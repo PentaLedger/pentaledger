@@ -12,3 +12,5 @@ _deps
 CMakeUserPresets.json
 
 build/
+# macOS crap
+.DS_Store
