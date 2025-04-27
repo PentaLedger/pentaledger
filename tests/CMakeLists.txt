@@ -5,11 +5,14 @@ FetchContent_Declare(
     GIT_REPOSITORY https://github.com/google/googletest.git
     GIT_TAG release-1.12.1
 )
+# For Windows: Prevent overriding the parent project's compiler/linker settings
+set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
 # Add test executable
 add_executable(pentaledger_tests
     src/pentaledger_tests.cpp
+    src/date/leap_year_test.cpp
 )
 
 # Link test executable with Google Test and our library
@@ -17,6 +20,7 @@ target_link_libraries(pentaledger_tests
     PRIVATE
         pentaledger_lib
         gtest
+        gmock
         gtest_main
 )
 
