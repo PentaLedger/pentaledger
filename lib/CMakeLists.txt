@@ -1,8 +1,10 @@
 add_library(pentaledger_lib
     src/pentaledger.cpp
     src/database.cpp
+    src/utility/wordwrap.cpp
     include/pentaledger/pentaledger.hpp
     include/pentaledger/database.hpp
+    include/pentaledger/utility/wordwrap.h
 )
 
 target_include_directories(pentaledger_lib

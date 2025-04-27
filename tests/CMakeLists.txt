@@ -15,15 +15,14 @@ add_executable(pentaledger_tests
     src/date/leap_year_test.cpp
     src/transportation/fuel_efficiency_test.cpp
     src/utility/Environment_test.cpp
+    src/utility/wordwrap_test.cpp
 )
 
 # Link test executable with Google Test and our library
 target_link_libraries(pentaledger_tests
     PRIVATE
         pentaledger_lib
-        gtest
-        gmock
-        gtest_main
+        GTest::gtest_main
 )
 
 # Add test to CTest
