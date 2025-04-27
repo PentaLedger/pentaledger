@@ -1,3 +1,11 @@
+// SPDX-License-Identifier: GPL-2.0-only
+//! \file fuel_efficiency_test.cpp
+//! \brief Test cases for fuel efficiency calculations
+//!
+//! \author Joe Turner <joe.turner@infinity-surge.com>
+//!
+//! \copyright
+//! Copyright (c) 2025 Joe Turner.
 #include <gtest/gtest.h>
 #include "pentaledger/transportation/fuel_efficiency.hpp"
 

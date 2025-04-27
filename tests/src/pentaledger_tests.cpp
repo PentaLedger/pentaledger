@@ -1,3 +1,10 @@
+// SPDX-License-Identifier: GPL-2.0-only
+//! \file pentaledger_tests.cpp
+//! \brief Test cases for PentaLedger
+//!
+//! \author Joe Turner <joe.turner@infinity-surge.com>
+//!
+//! \copyright
 #include <gtest/gtest.h>
 #include "pentaledger/pentaledger.hpp"
 

@@ -3,6 +3,8 @@
 //! \author Joe Turner <joe.turner@infinity-surge.com>
 //!
 //! \copyright
+//!
+//! This file is part of the PentaLedger distribution.
 //! Copyright (c) 2025 Joe Turner.
 //!
 //! This program is free software; you can redistribute it and/or

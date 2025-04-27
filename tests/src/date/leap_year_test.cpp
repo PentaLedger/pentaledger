@@ -1,9 +1,12 @@
-/**
- * \file LeapYear_tst.cpp
- *
- * Copyright (c) 2025 Joe Turner.  All rights reserved.
- * Unauthorized copying prohibited.
- */
+// SPDX-License-Identifier: GPL-2.0-only
+//! \file leap_year_test.cpp
+//! \brief Test cases for leap year calculations
+//!
+//! \author Joe Turner <joe.turner@infinity-surge.com>
+//!
+//! \copyright
+//! Copyright (c) 2025 Joe Turner.
+
 #include "pentaledger/date/leap_year.hpp"
 #include <gtest/gtest.h>
 
