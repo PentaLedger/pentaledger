@@ -1,11 +1,19 @@
 add_library(pentaledger_lib
     src/pentaledger.cpp
+    src/database.cpp
     include/pentaledger/pentaledger.hpp
+    include/pentaledger/database.hpp
 )
 
 target_include_directories(pentaledger_lib
     PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/include
+        ${PostgreSQL_INCLUDE_DIRS}
+)
+
+target_link_libraries(pentaledger_lib
+    PRIVATE
+        ${PostgreSQL_LIBRARIES}
 )
 
 # Install rules

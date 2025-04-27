@@ -8,6 +8,9 @@ enable_testing()
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+# Find PostgreSQL
+find_package(PostgreSQL REQUIRED)
+
 # Add option for building documentation
 option(BUILD_DOCS "Build Doxygen documentation" ON)
 
