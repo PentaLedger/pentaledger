@@ -14,3 +14,8 @@ CMakeUserPresets.json
 build/
 # macOS crap
 .DS_Store
+
+# notes
+.notes
+.env
+
