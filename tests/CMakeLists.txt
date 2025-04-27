@@ -13,6 +13,7 @@ FetchContent_MakeAvailable(googletest)
 add_executable(pentaledger_tests
     src/pentaledger_tests.cpp
     src/date/leap_year_test.cpp
+    src/transportation/fuel_efficiency_test.cpp
 )
 
 # Link test executable with Google Test and our library
