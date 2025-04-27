@@ -19,8 +19,12 @@
 #ifndef _ACCOUNT_TYPES_HPP_
 #define _ACCOUNT_TYPES_HPP_
 
-namespace infinity
+namespace pentaledger
 {
+    //! \brief Accounting namespace
+    //!
+    //! This namespace contains all of the accounting related code for the PentaLedger project.
+    //!
     namespace accounting
     {
 
