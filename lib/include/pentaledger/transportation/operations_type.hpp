@@ -18,6 +18,10 @@
 //! along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef _OPERATIONS_TYPE_HPP_
 #define _OPERATIONS_TYPE_HPP_
+namespace pentaledger
+{
+    namespace transportation
+    {
 
 enum eDRIVER_OPERATIONS_MODE
 {
@@ -50,4 +54,6 @@ enum eDRIVER_OPERATIONS_MODE
     eOILFIELD_OPERATIONS,
 };
 
+    }
+}
 #endif
