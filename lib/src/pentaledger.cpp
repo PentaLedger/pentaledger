@@ -1,3 +1,8 @@
+/**
+ * @file pentaledger.cpp
+ * @brief Implementation of the PentaLedger class.
+ */
+
 #include "pentaledger/pentaledger.hpp"
 
 namespace pentaledger {
