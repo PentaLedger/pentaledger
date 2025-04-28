@@ -47,18 +47,19 @@ jobs:
       if: matrix.os == 'ubuntu-latest'
       run: |
         sudo apt-get update
-        sudo apt-get install -y build-essential cmake ninja-build
+        sudo apt-get install -y build-essential cmake ninja-build libpq-dev postgresql-server-dev-all
 
     - name: Install Dependencies
       if: matrix.os == 'macos-latest'
       run: |
         brew update
-        brew install cmake ninja gcc@12 llvm@15
+        brew install cmake ninja gcc@12 llvm@15 postgresql@15
+        brew link postgresql@15 --force
 
     - name: Install Dependencies
       if: matrix.os == 'windows-latest'
       run: |
-        choco install cmake ninja
+        choco install cmake ninja postgresql
 
     - name: Set up compiler
       if: matrix.compiler == 'gcc' && matrix.os == 'ubuntu-latest'
@@ -94,7 +95,8 @@ jobs:
           -DCMAKE_C_COMPILER=${{ matrix.compiler == 'gcc' && 'gcc' || matrix.compiler == 'clang' && 'clang' || 'cl' }} \
           -DCMAKE_CXX_COMPILER=${{ matrix.compiler == 'gcc' && 'g++' || matrix.compiler == 'clang' && 'clang++' || 'cl' }} \
           -DCMAKE_CXX_STANDARD=17 \
-          -DBUILD_TESTING=ON
+          -DBUILD_TESTING=ON \
+          -DPostgreSQL_ROOT=${{ matrix.os == 'macos-latest' && '/opt/homebrew/opt/postgresql@15' || '' }}
 
     - name: Build
       run: |
