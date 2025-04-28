@@ -59,7 +59,7 @@ jobs:
       if: matrix.os == 'macos-latest'
       run: |
         brew update
-        brew install cmake ninja gcc@12 llvm@15 postgresql@15
+        brew install cmake ninja gcc@12 llvm@15 postgresql@15 doxygen graphviz
         brew link postgresql@15 --force
 
     - name: Install Dependencies
