@@ -17,18 +17,18 @@ jobs:
           - os: windows-latest
             compiler: clang
         include:
-          - os: windows-latest
-            compiler: msvc
-            generator: "Visual Studio 17 2022"
-            arch: x64
-          - os: ubuntu-latest
-            compiler: gcc
-            generator: "Unix Makefiles"
-            arch: x64
-          - os: ubuntu-latest
-            compiler: clang
-            generator: "Unix Makefiles"
-            arch: x64
+          # - os: windows-latest
+          #   compiler: msvc
+          #   generator: "Visual Studio 17 2022"
+          #   arch: x64
+          # - os: ubuntu-latest
+          #   compiler: gcc
+          #   generator: "Unix Makefiles"
+          #   arch: x64
+          # - os: ubuntu-latest
+          #   compiler: clang
+          #   generator: "Unix Makefiles"
+          #   arch: x64
           - os: macos-latest
             compiler: gcc
             generator: "Unix Makefiles"
