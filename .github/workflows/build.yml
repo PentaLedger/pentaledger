@@ -53,7 +53,7 @@ jobs:
       if: matrix.os == 'macos-latest'
       run: |
         brew update
-        brew install cmake ninja
+        brew install cmake ninja gcc@12 llvm@15
 
     - name: Install Dependencies
       if: matrix.os == 'windows-latest'
@@ -61,7 +61,7 @@ jobs:
         choco install cmake ninja
 
     - name: Set up compiler
-      if: matrix.compiler == 'gcc' && matrix.os != 'windows-latest'
+      if: matrix.compiler == 'gcc' && matrix.os == 'ubuntu-latest'
       run: |
         sudo apt-get update
         sudo apt-get install -y g++-12
@@ -69,12 +69,22 @@ jobs:
         sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-12 100
 
     - name: Set up compiler
-      if: matrix.compiler == 'clang' && matrix.os != 'windows-latest'
+      if: matrix.compiler == 'clang' && matrix.os == 'ubuntu-latest'
       run: |
         sudo apt-get update
         sudo apt-get install -y clang-15
         sudo update-alternatives --install /usr/bin/clang clang /usr/bin/clang-15 100
         sudo update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-15 100
+
+    - name: Set up compiler
+      if: matrix.compiler == 'gcc' && matrix.os == 'macos-latest'
+      run: |
+        echo "GCC is already installed via Homebrew"
+
+    - name: Set up compiler
+      if: matrix.compiler == 'clang' && matrix.os == 'macos-latest'
+      run: |
+        echo "Clang is already installed via Homebrew"
 
     - name: Configure CMake
       run: |
