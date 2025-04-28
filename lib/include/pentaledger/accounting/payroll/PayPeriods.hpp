@@ -19,7 +19,7 @@
 #ifndef _PAY_PERIODS_HPP_
 #define _PAY_PERIODS_HPP_
 
-namespace ioi
+namespace pentaledger
 {
     namespace accounting
     {

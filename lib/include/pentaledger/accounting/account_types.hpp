@@ -102,6 +102,12 @@ namespace pentaledger
             //! - Advertising
             //! - Cost of goods sold
             EXPENSE_ACCOUNT,
+
+            //! Non-operating revenues and gains (Investment Income, Gain on Disposal of Truck)
+            NON_OPERATING_REVENUES_AND_GAINS,
+
+            //! Non-operating expenses and losses (Interest Expense, Loss on Disposal of Equipment
+            NON_OPERATING_EXPENSES_AND_LOSSES,
         };
 
     }

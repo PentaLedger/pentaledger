@@ -20,7 +20,7 @@
 #ifndef _EMPLOYEE_HPP_
 #define _EMPLOYEE_HPP_
 
-namespace ioi
+namespace pentaledger
 {
     namespace accounting
     {

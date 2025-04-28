@@ -18,7 +18,7 @@
 #ifndef _OSADI_HPP_
 #define _OSADI_HPP_
 
-namespace ioi
+namespace pentaledger
 {
     namespace accounting
     {
