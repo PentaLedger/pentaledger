@@ -2,7 +2,7 @@ name: Build and Test
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, github-workflow]
   pull_request:
     branches: [ main ]
 
@@ -10,24 +10,25 @@ jobs:
   build:
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
+        # os: [ubuntu-latest, macos-latest, windows-latest]
+        os: [macos-latest]
         compiler: [gcc, clang]
         exclude:
           - os: windows-latest
             compiler: clang
         include:
-          - os: windows-latest
-            compiler: msvc
-            generator: "Visual Studio 17 2022"
-            arch: x64
-          - os: ubuntu-latest
-            compiler: gcc
-            generator: "Unix Makefiles"
-            arch: x64
-          - os: ubuntu-latest
-            compiler: clang
-            generator: "Unix Makefiles"
-            arch: x64
+          # - os: windows-latest
+          #   compiler: msvc
+          #   generator: "Visual Studio 17 2022"
+          #   arch: x64
+          # - os: ubuntu-latest
+          #   compiler: gcc
+          #   generator: "Unix Makefiles"
+          #   arch: x64
+          # - os: ubuntu-latest
+          #   compiler: clang
+          #   generator: "Unix Makefiles"
+          #   arch: x64
           - os: macos-latest
             compiler: gcc
             generator: "Unix Makefiles"
@@ -58,7 +59,7 @@ jobs:
       if: matrix.os == 'macos-latest'
       run: |
         brew update
-        brew install cmake ninja gcc@12 llvm@15 postgresql@15
+        brew install cmake ninja gcc@12 llvm@15 postgresql@15 doxygen graphviz
         brew link postgresql@15 --force
 
     - name: Install Dependencies
