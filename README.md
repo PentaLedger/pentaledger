@@ -1,7 +1,7 @@
 # pentaledger
 
 ![Build workflow](https://github.com/PentaLedger/pentaledger/actions/workflows/build.yml/badge.svg)
-![CodeFactor]([https://www.codefactor.io/repository/github/signalr/signalr](https://www.codefactor.io/repository/github/pentaledger/pentaledger)
+![CodeFactor](https://www.codefactor.io/repository/github/pentaledger/pentaledger/badge)
 
 > [!IMPORTANT]  
 > This software is not ready for end-user usage, yet. Check back in the future. 
