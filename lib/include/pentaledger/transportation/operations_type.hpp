@@ -23,36 +23,36 @@ namespace pentaledger
     namespace transportation
     {
 
-enum eDRIVER_OPERATIONS_MODE
-{
-    //! Short Haul Operations - 150 AMR
-    eSHORT_HAUL_OPERATIONS,
-    //! Transportation of Construction Materials - 75 AMR
-    eCONSTRUCTION_MATERIALS,
-    //! Agricultural Operations - 150 AMR
-    eAGRICULTURAL_OPERATIONS,
-    //! Motion Picture Production Site - 100 AMR
-    eMOTION_PICTURE_PRODUCTIONS,
-    //! OTR
-    eOTR,
+        enum eDRIVER_OPERATIONS_MODE
+        {
+            //! Short Haul Operations - 150 AMR
+            eSHORT_HAUL_OPERATIONS,
+            //! Transportation of Construction Materials - 75 AMR
+            eCONSTRUCTION_MATERIALS,
+            //! Agricultural Operations - 150 AMR
+            eAGRICULTURAL_OPERATIONS,
+            //! Motion Picture Production Site - 100 AMR
+            eMOTION_PICTURE_PRODUCTIONS,
+            //! OTR
+            eOTR,
 
-    //! \brief Oil field operations (Oilfield Exemption)
-    //!
-    //! (1) In the instance of drivers of CMVs used exclusively in the
-    //! transportation of oilfield equipment, including the stringing
-    //! and picking up of pip used in pipelines, and servicing of the
-    //! field operations of the natural gas and oil industry, any
-    //! period of 8 consecutive days may end with the beginning of any
-    //! off duty period of 24 or more successive hours.
-    //!
-    //! (2) In the case of specially trained drivers of CMVs which are
-    //! specially constructed to service oil wells, on duty time shall not
-    //! include waiting time at a natural gas or oil well site; provided,
-    //! that all such time shall be fully and accurately accounted for in
-    //! records to be maintained by the motor carrier.  Such records shall
-    //! be made availasble upon request of the FMCSA.
-    eOILFIELD_OPERATIONS,
-};
+            //! \brief Oil field operations (Oilfield Exemption)
+            //!
+            //! (1) In the instance of drivers of CMVs used exclusively in the
+            //! transportation of oilfield equipment, including the stringing
+            //! and picking up of pip used in pipelines, and servicing of the
+            //! field operations of the natural gas and oil industry, any
+            //! period of 8 consecutive days may end with the beginning of any
+            //! off duty period of 24 or more successive hours.
+            //!
+            //! (2) In the case of specially trained drivers of CMVs which are
+            //! specially constructed to service oil wells, on duty time shall not
+            //! include waiting time at a natural gas or oil well site; provided,
+            //! that all such time shall be fully and accurately accounted for in
+            //! records to be maintained by the motor carrier.  Such records shall
+            //! be made availasble upon request of the FMCSA.
+            eOILFIELD_OPERATIONS,
+        };
 
     }
 }

@@ -23,14 +23,14 @@ namespace pentaledger
     namespace transportation
     {
 
-enum eDRIVER_STATUS
-{
-    eOFF_DUTY,
-    eSLEEPER_BERTH,
-    eDRIVING,
-    eON_DUTY,
-    eOFF_DUTY_WELL_SITE,
-};
+        enum eDRIVER_STATUS
+        {
+            eOFF_DUTY,
+            eSLEEPER_BERTH,
+            eDRIVING,
+            eON_DUTY,
+            eOFF_DUTY_WELL_SITE,
+        };
 
     }
 }
