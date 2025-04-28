@@ -21,7 +21,7 @@
 #include <vector>
 #include "patterns/Observer.hpp"
 
-namespace ioi
+namespace pentaledger
 {
     namespace patterns
     {

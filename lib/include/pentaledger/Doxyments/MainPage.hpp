@@ -18,20 +18,11 @@ Topics:
 Questions, comments, concerns, or dissenting opinions should be directed 
 to joe.turner@infinity-surge.com
 
-  \section Categories
- Click on the link(s) below on the description of some of the code:
-
- - \ref designpatterns
-
-
- \tableofcontents
-
  \section Requirements
 
- - Doxygen 1.8.0+ (for markdown support) and GraphViz.
+ - Doxygen (for markdown support) and GraphViz.
  - GNU GCC toolchain
  - Git (obviously)
- - CPPUNIT (for unit tests)
 
 \section make Building and Installing
 
