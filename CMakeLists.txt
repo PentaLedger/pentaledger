@@ -8,6 +8,17 @@ enable_testing()
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+# Include FetchContent
+include(FetchContent)
+
+# Fetch CLI11
+FetchContent_Declare(
+    CLI11
+    GIT_REPOSITORY https://github.com/CLIUtils/CLI11.git
+    GIT_TAG v2.4.1
+)
+FetchContent_MakeAvailable(CLI11)
+
 # Find PostgreSQL
 find_package(PostgreSQL REQUIRED)
 

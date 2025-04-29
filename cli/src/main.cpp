@@ -8,6 +8,7 @@
 #include "pentaledger/pentaledger.hpp"
 #include "pentaledger/database.hpp"
 #include "pentaledger/utility/Environment.hpp"
+#include <CLI/CLI.hpp>
 
 
 void createCompany(pentaledger::Database& db) {
@@ -26,35 +27,73 @@ void createCompany(pentaledger::Database& db) {
  */
 int main(int argc, char* argv[]) {
     pentaledger::PentaLedger ledger;
-    std::cout << "PentaLedger Version: " << ledger.getVersion() << std::endl;
+    CLI::App app{"PentaLedger - A modern ledger system"};
+    
+    // Version command
+    app.add_flag_callback("--version", [&ledger]() {
+        std::cout << "PentaLedger Version: " << ledger.getVersion() << std::endl;
+        exit(0);
+    }, "Show version information");
 
-    // Get database URL from environment variable
+    // Don't require a subcommand
+    app.require_subcommand(0);
+
+    // Add callback for when no subcommand is provided
+    app.callback([&app]() {
+        std::cout << "Welcome to PentaLedger CLI!" << std::endl;
+        std::cout << "Use one of the following commands:" << std::endl << std::endl;
+        std::cout << app.help() << std::endl;
+    });
+    
     std::string db_url = pentaledger::utility::Environment<std::string>::get("DATABASE_URL");
-
-    std::cout << "Database URL: " << db_url << std::endl;
     if (db_url.empty()) {
         std::cerr << "Error: DATABASE_URL environment variable is not set" << std::endl;
-        return 1;
+        exit(1);
     }
 
-    // Initialize database connection
     pentaledger::Database db(db_url);
     if (!db.connect()) {
         std::cerr << "Failed to connect to database: " << db.getLastError() << std::endl;
-        return 1;
+        exit(1);
     }
 
-    // List companies
-    db.dumpCompanies();
+    // Company command
+    auto company_cmd = app.add_subcommand("company", "Manage companies");
+    
+    // Company list subcommand
+    auto list_cmd = company_cmd->add_subcommand("list", "List all companies");
+    list_cmd->callback([&]() {
+        db.dumpCompanies();
+    });
 
-    // // Create a parent company
-    // pentaledger::Company parent = db.createCompany("Parent Corp", "123-45-6789");
+    // Company create subcommand
+    auto create_cmd = company_cmd->add_subcommand("create", "Create a new company");
+    std::string name, tax_id, parent_id;
+    create_cmd->add_option("--name,-n", name, "Company name")->required();
+    create_cmd->add_option("--tax-id,-t", tax_id, "Tax identification number")->required();
+    create_cmd->add_option("--parent-id,-p", parent_id, "Parent company ID (optional)");
+    create_cmd->callback([&]() {
+        try {
+            auto company = db.createCompany(name, tax_id, parent_id);
+            std::cout << "Company created successfully:" << std::endl;
+            std::cout << "  ID: " << company.id << std::endl;
+            std::cout << "  Name: " << company.name << std::endl;
+            std::cout << "  Tax ID: " << company.tax_id << std::endl;
+            if (!company.parent_id.empty()) {
+                std::cout << "  Parent ID: " << company.parent_id << std::endl;
+            }
+        } catch (const std::exception& e) {
+            std::cerr << "Error creating company: " << e.what() << std::endl;
+            exit(1);
+        }
+    });
 
-    // // Create a subsidiary
-    // pentaledger::Company subsidiary = db.createCompany("Subsidiary Inc", "987-65-4321", parent.id);
-
-    // std::cout << "Creating company..." << std::endl;
-    // listCompanies(db);
+    // Parse command line arguments
+    try {
+        app.parse(argc, argv);
+    } catch (const CLI::ParseError& e) {
+        return app.exit(e);
+    }
 
     return 0;
 } 
