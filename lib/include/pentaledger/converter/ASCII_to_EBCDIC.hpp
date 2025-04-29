@@ -23,7 +23,7 @@
 
 namespace pentaledger
 {
-    namespace utility
+    namespace converter
     {
 
         std::string asciiToebcdic(const std::string &source)

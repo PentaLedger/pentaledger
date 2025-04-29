@@ -22,7 +22,7 @@
 
 namespace pentaledger
 {
-    namespace utility
+    namespace converter
     {
 
         //! \brief Convert EBCDIC string to ASCII
