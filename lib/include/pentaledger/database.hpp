@@ -74,6 +74,22 @@ public:
      */
     std::vector<Company> getCompanies();
 
+    /**
+     * @brief Create a new company in the database.
+     * 
+     * @param name The company name
+     * @param tax_id The company's tax identification number
+     * @param parent_id Optional UUID of the parent company
+     * @return Company The created company with its ID and timestamps
+     * @throw std::runtime_error if creation fails
+     */
+    Company createCompany(const std::string& name, const std::string& tax_id, const std::string& parent_id = "");
+
+    /**
+     * @brief Dump all companies from the database to the console.
+     */
+    void dumpCompanies();
+
 private:
     std::string connectionString_;
     PGconn* connection_;
