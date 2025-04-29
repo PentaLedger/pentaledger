@@ -20,9 +20,9 @@
  * 
  */
 #include <gtest/gtest.h>
-#include <pentaledger/codec/base64.hpp>
+#include <pentaledger/converter/base64.hpp>
 
-using namespace pentaledger::codec ;
+using namespace pentaledger::converter ;
 
 const char* rfc_4648_encoded[] = {
     "Zg==",

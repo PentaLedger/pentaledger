@@ -38,7 +38,7 @@
  */
 namespace pentaledger
 {
-    namespace codec
+    namespace converter
     {
 
         /**
