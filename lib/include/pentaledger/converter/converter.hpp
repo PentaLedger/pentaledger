@@ -26,6 +26,8 @@
 
 
 namespace pentaledger {
+
+    //! \brief Conversion of data formats
     namespace converter {
 
         class Converter {
