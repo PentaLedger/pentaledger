@@ -63,4 +63,34 @@ std::string Database::getLastError() const {
     return "No database connection";
 }
 
+std::vector<Company> Database::getCompanies() {
+    if (!isConnected_) {
+        throw std::runtime_error("Database is not connected");
+    }
+
+    const char* query = "SELECT id, name, tax_id, created_at, updated_at FROM companies ORDER BY name";
+    PGresult* result = executeQuery(query);
+    
+    if (PQresultStatus(result) != PGRES_TUPLES_OK) {
+        PQclear(result);
+        throw std::runtime_error("Failed to execute query: " + getLastError());
+    }
+
+    std::vector<Company> companies;
+    int rows = PQntuples(result);
+    
+    for (int i = 0; i < rows; i++) {
+        Company company;
+        company.id = PQgetvalue(result, i, 0);
+        company.name = PQgetvalue(result, i, 1);
+        company.tax_id = PQgetvalue(result, i, 2);
+        company.created_at = PQgetvalue(result, i, 3);
+        company.updated_at = PQgetvalue(result, i, 4);
+        companies.push_back(company);
+    }
+
+    PQclear(result);
+    return companies;
+}
+
 } // namespace pentaledger 

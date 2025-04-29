@@ -78,12 +78,14 @@ namespace pentaledger
 
             static std::string get(const char *a_key)
             {
-                const char *pValue = getenv(a_key);
+                char *pValue = ::getenv(a_key);
                 std::string result = "";
-                if (pValue)
+        
+                if (pValue != nullptr)
                 {
                     result = std::string(pValue);
                 }
+
                 return result;
             }
 

@@ -2,7 +2,9 @@
 
 #include <string>
 #include <memory>
+#include <vector>
 #include <libpq-fe.h>
+#include "pentaledger/company.hpp"
 
 namespace pentaledger {
 
@@ -63,6 +65,14 @@ public:
      * @return std::string The error message
      */
     std::string getLastError() const;
+
+    /**
+     * @brief Get all companies from the database.
+     * 
+     * @return std::vector<Company> Vector of companies
+     * @throw std::runtime_error if query fails
+     */
+    std::vector<Company> getCompanies();
 
 private:
     std::string connectionString_;
