@@ -16,7 +16,8 @@ add_executable(pentaledger_tests
     src/transportation/fuel_efficiency_test.cpp
     src/utility/Environment_test.cpp
     src/utility/wordwrap_test.cpp
-    src/codec/base64_test.cpp
+    src/converter/base64_test.cpp
+#    src/converter/ascii_to_ebcdic_test.cpp
 )
 
 # Link test executable with Google Test and our library

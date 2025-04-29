@@ -2,9 +2,11 @@ add_library(pentaledger_lib
     src/pentaledger.cpp
     src/database.cpp
     src/utility/wordwrap.cpp
+    src/converter/ASCII_to_EBCDIC.cpp
     include/pentaledger/pentaledger.hpp
     include/pentaledger/database.hpp
     include/pentaledger/utility/wordwrap.h
+    include/pentaledger/converter/ASCII_to_EBCDIC.hpp
 )
 
 target_include_directories(pentaledger_lib
