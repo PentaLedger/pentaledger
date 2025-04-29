@@ -22,7 +22,7 @@
 #include <gtest/gtest.h>
 #include <pentaledger/codec/base64.hpp>
 
-using namespace libRFC ;
+using namespace pentaledger::codec ;
 
 const char* rfc_4648_encoded[] = {
     "Zg==",
