@@ -36,16 +36,6 @@ int main(int argc, char* argv[]) {
         exit(0);
     }, "Show version information");
 
-    // Don't require a subcommand
-    app.require_subcommand(0);
-
-    // Add callback for when no subcommand is provided
-    app.callback([&app]() {
-        std::cout << "Welcome to PentaLedger CLI!" << std::endl;
-        std::cout << "Use one of the following commands:" << std::endl << std::endl;
-        std::cout << app.help() << std::endl;
-    });
-    
     std::string db_url = pentaledger::utility::Environment<std::string>::get("DATABASE_URL");
     if (db_url.empty()) {
         std::cerr << "Error: DATABASE_URL environment variable is not set" << std::endl;
@@ -188,6 +178,14 @@ int main(int argc, char* argv[]) {
         }
     });
 
+    // Don't require a subcommand
+    std::cout << argc << std::endl;
+    if (argc == 1) {
+        std::cout << "Welcome to PentaLedger CLI!" << std::endl;
+        std::cout << "Use one of the following commands:" << std::endl << std::endl;
+        std::cout << app.help() << std::endl;
+    }
+    
     // Parse command line arguments
     try {
         app.parse(argc, argv);
