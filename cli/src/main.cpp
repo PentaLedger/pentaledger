@@ -1,8 +1,21 @@
-/**
- * @file main.cpp
- * @brief Main entry point for the PentaLedger command-line utility.
- */
-
+// SPDX-License-Identifier: GPL-2.0-or-later
+//! \file main.cpp
+//! \author Joe Turner <joe.turner@infinity-surge.com>
+//!
+//! \copyright
+//! Copyright (c) 2025 Joe Turner.
+//!
+//! This program is free software: you can redistribute it and/or modify
+//! it under the terms of the GNU General Public License as published by
+//! the Free Software Foundation, version 2.
+//!
+//! This program is distributed in the hope that it will be useful, but
+//! WITHOUT ANY WARRANTY; without even the implied warranty of
+//! MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+//! General Public License for more details.
+//!
+//! You should have received a copy of the GNU General Public License
+//! along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 #include <iomanip>
 #include "pentaledger/pentaledger.hpp"
@@ -11,13 +24,6 @@
 #include <CLI/CLI.hpp>
 
 using namespace pentaledger::db;
-
-void createCompany(Database& db) {
-    std::string name = "Test Company";
-    std::string tax_id = "1234567890";
-    auto company = db.createCompany(name, tax_id);
-    std::cout << "Company created: " << company.id << std::endl;
-}
 
 /**
  * @brief Main function for the PentaLedger CLI.
@@ -179,13 +185,12 @@ int main(int argc, char* argv[]) {
     });
 
     // Don't require a subcommand
-    std::cout << argc << std::endl;
     if (argc == 1) {
         std::cout << "Welcome to PentaLedger CLI!" << std::endl;
         std::cout << "Use one of the following commands:" << std::endl << std::endl;
         std::cout << app.help() << std::endl;
     }
-    
+
     // Parse command line arguments
     try {
         app.parse(argc, argv);
