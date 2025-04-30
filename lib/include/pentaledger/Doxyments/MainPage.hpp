@@ -37,7 +37,7 @@ to joe.turner@infinity-surge.com
  This project uses doxygen to generate the documentation.  To generate
  this documentation, you must have doxygen installed.  Simple execute doxygen:
  \code
- $ make doc
+ $ make docs
  \endcode
 
  \section Running Unit Tests
