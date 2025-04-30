@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
-project(PentaLedger VERSION 0.1.0 LANGUAGES CXX)
+project(PentaLedger VERSION 0.0.1 LANGUAGES CXX)
 
 # Enable testing
 enable_testing()
@@ -7,6 +7,9 @@ enable_testing()
 # Set C++ standard
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+# turn off deprecated warnings in gtest, etc.
+set(CMAKE_WARN_DEPRECATED OFF CACHE BOOL "" FORCE)
 
 # Include FetchContent
 include(FetchContent)
