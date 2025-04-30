@@ -150,6 +150,44 @@ int main(int argc, char* argv[]) {
         }
     });
 
+    // Gambling summary subcommand
+    auto gambling_summary_cmd = gambling_cmd->add_subcommand("summary", "Show summary of gambling wins and losses");
+    gambling_summary_cmd->callback([&]() {
+        try {
+            auto logs = db.getGamblingLogs();
+            double total_w2_winnings = 0.0;
+            double total_winnings = 0.0;
+            double total_losses = 0.0;
+            
+            for (const auto& log : logs) {
+                total_w2_winnings += log.w2_winnings;
+                total_winnings += log.winnings;
+                total_losses += log.losses;
+            }
+            
+            double net_result = total_winnings - total_losses;
+            
+            std::cout << "\nGambling Summary:" << std::endl;
+            std::cout << "=================" << std::endl;
+            std::cout << "Total W2 Winnings: $" << std::fixed << std::setprecision(2) << total_w2_winnings << std::endl;
+            std::cout << "Total Winnings:    $" << std::fixed << std::setprecision(2) << total_winnings << std::endl;
+            std::cout << "Total Losses:      $" << std::fixed << std::setprecision(2) << total_losses << std::endl;
+            std::cout << "Net Result:        $" << std::fixed << std::setprecision(2) << net_result << std::endl;
+            std::cout << "Number of Sessions: " << logs.size() << std::endl;
+            
+            if (net_result > 0) {
+                std::cout << "\nOverall Result: You are up $" << std::fixed << std::setprecision(2) << net_result << std::endl;
+            } else if (net_result < 0) {
+                std::cout << "\nOverall Result: You are down $" << std::fixed << std::setprecision(2) << -net_result << std::endl;
+            } else {
+                std::cout << "\nOverall Result: You broke even" << std::endl;
+            }
+        } catch (const std::exception& e) {
+            std::cerr << "Error getting gambling summary: " << e.what() << std::endl;
+            exit(1);
+        }
+    });
+
     // Parse command line arguments
     try {
         app.parse(argc, argv);
