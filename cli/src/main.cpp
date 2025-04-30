@@ -89,6 +89,67 @@ int main(int argc, char* argv[]) {
         }
     });
 
+    // Gambling log command
+    auto gambling_cmd = app.add_subcommand("gambling", "Manage gambling logs");
+    
+    // Gambling list subcommand
+    auto gambling_list_cmd = gambling_cmd->add_subcommand("list", "List all gambling log entries");
+    gambling_list_cmd->callback([&]() {
+        db.dumpGamblingLogs();
+    });
+
+    // Gambling create subcommand
+    auto gambling_create_cmd = gambling_cmd->add_subcommand("create", "Create a new gambling log entry");
+    std::string date, establishment_name, establishment_address, time_of_day, wagering_type, location_id, notes;
+    double w2_winnings, winnings, losses;
+    
+    gambling_create_cmd->add_option("--date,-d", date, "Date (YYYY-MM-DD)")->required();
+    gambling_create_cmd->add_option("--establishment,-e", establishment_name, "Establishment name")->required();
+    gambling_create_cmd->add_option("--address,-a", establishment_address, "Establishment address")->required();
+    gambling_create_cmd->add_option("--time,-t", time_of_day, "Time of day (HH:MM:SS)")->required();
+    gambling_create_cmd->add_option("--type,-y", wagering_type, "Wagering type")->required();
+    gambling_create_cmd->add_option("--location,-l", location_id, "Location ID")->required();
+    gambling_create_cmd->add_option("--w2,-w", w2_winnings, "W2 winnings")->required();
+    gambling_create_cmd->add_option("--winnings,-g", winnings, "Total winnings")->required();
+    gambling_create_cmd->add_option("--losses,-s", losses, "Total losses")->required();
+    gambling_create_cmd->add_option("--notes,-n", notes, "Additional notes");
+    
+    gambling_create_cmd->callback([&]() {
+        try {
+            auto log = db.createGamblingLog(
+                date,
+                establishment_name,
+                establishment_address,
+                time_of_day,
+                wagering_type,
+                location_id,
+                w2_winnings,
+                winnings,
+                losses,
+                notes
+            );
+            
+            std::cout << "Gambling log entry created successfully:" << std::endl;
+            std::cout << "  ID: " << log.id << std::endl;
+            std::cout << "  Date: " << log.date << std::endl;
+            std::cout << "  Time: " << log.time_of_day << std::endl;
+            std::cout << "  Establishment: " << log.establishment_name << std::endl;
+            std::cout << "  Address: " << log.establishment_address << std::endl;
+            std::cout << "  Wagering Type: " << log.wagering_type << std::endl;
+            std::cout << "  Location ID: " << log.location_id << std::endl;
+            std::cout << "  W2 Winnings: $" << std::fixed << std::setprecision(2) << log.w2_winnings << std::endl;
+            std::cout << "  Winnings: $" << std::fixed << std::setprecision(2) << log.winnings << std::endl;
+            std::cout << "  Losses: $" << std::fixed << std::setprecision(2) << log.losses << std::endl;
+            std::cout << "  Net: $" << std::fixed << std::setprecision(2) << (log.winnings - log.losses) << std::endl;
+            if (!log.notes.empty()) {
+                std::cout << "  Notes: " << log.notes << std::endl;
+            }
+        } catch (const std::exception& e) {
+            std::cerr << "Error creating gambling log entry: " << e.what() << std::endl;
+            exit(1);
+        }
+    });
+
     // Parse command line arguments
     try {
         app.parse(argc, argv);

@@ -5,6 +5,7 @@
 #include <vector>
 #include <libpq-fe.h>
 #include "pentaledger/db/company.hpp"
+#include "pentaledger/db/gambling_log.hpp"
 
 namespace pentaledger
 {
@@ -96,6 +97,48 @@ namespace pentaledger
              * @brief Dump all companies from the database to the console.
              */
             void dumpCompanies();
+
+            /**
+             * @brief Get all gambling log entries from the database.
+             *
+             * @return std::vector<GamblingLog> Vector of gambling log entries
+             * @throw std::runtime_error if query fails
+             */
+            std::vector<GamblingLog> getGamblingLogs();
+
+            /**
+             * @brief Create a new gambling log entry in the database.
+             *
+             * @param date Date of the gambling activity (YYYY-MM-DD)
+             * @param establishment_name Name of the gambling establishment
+             * @param establishment_address Address of the gambling establishment
+             * @param time_of_day Time of the gambling activity (HH:MM:SS)
+             * @param wagering_type Type of wagering
+             * @param location_id Location identifier
+             * @param w2_winnings W2 reportable winnings
+             * @param winnings Total winnings
+             * @param losses Total losses
+             * @param notes Additional notes
+             * @return GamblingLog The created gambling log entry with its ID and timestamps
+             * @throw std::runtime_error if creation fails
+             */
+            GamblingLog createGamblingLog(
+                const std::string& date,
+                const std::string& establishment_name,
+                const std::string& establishment_address,
+                const std::string& time_of_day,
+                const std::string& wagering_type,
+                const std::string& location_id,
+                double w2_winnings,
+                double winnings,
+                double losses,
+                const std::string& notes = ""
+            );
+
+            /**
+             * @brief Dump all gambling log entries to the console.
+             */
+            void dumpGamblingLogs();
 
         private:
             std::string connectionString_;
