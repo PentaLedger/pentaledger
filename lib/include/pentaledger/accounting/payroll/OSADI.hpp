@@ -48,8 +48,6 @@ namespace pentaledger
              *
              *  @{
              */
-            namespace payroll
-            {
 
                 //! \brief Social Security Tax Rate for a given year
                 //!
@@ -169,7 +167,6 @@ namespace pentaledger
                         fy2020();
                     }
                 };
-            };
 
         };
     };

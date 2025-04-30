@@ -6,12 +6,13 @@
 #include <iostream>
 #include <iomanip>
 #include "pentaledger/pentaledger.hpp"
-#include "pentaledger/database.hpp"
+#include "pentaledger/db/database.hpp"
 #include "pentaledger/utility/Environment.hpp"
 #include <CLI/CLI.hpp>
 
+using namespace pentaledger::db;
 
-void createCompany(pentaledger::Database& db) {
+void createCompany(Database& db) {
     std::string name = "Test Company";
     std::string tax_id = "1234567890";
     auto company = db.createCompany(name, tax_id);
@@ -51,7 +52,7 @@ int main(int argc, char* argv[]) {
         exit(1);
     }
 
-    pentaledger::Database db(db_url);
+    Database db(db_url);
     if (!db.connect()) {
         std::cerr << "Failed to connect to database: " << db.getLastError() << std::endl;
         exit(1);

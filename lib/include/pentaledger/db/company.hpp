@@ -3,6 +3,7 @@
 #include <string>
 
 namespace pentaledger {
+namespace db {
 
 /**
  * @brief Represents a company in the system.
@@ -19,4 +20,5 @@ struct Company {
     std::string updated_at; ///< Timestamp when the record was last updated
 };
 
+} // namespace db
 } // namespace pentaledger 

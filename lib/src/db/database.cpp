@@ -1,7 +1,9 @@
-#include "pentaledger/database.hpp"
+#include "pentaledger/db/database.hpp"
 #include <iostream>
 #include <iomanip>
 #include <stdexcept>
+
+using namespace pentaledger::db;
 
 namespace pentaledger {
 
