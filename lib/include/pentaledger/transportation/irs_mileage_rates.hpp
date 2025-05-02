@@ -20,6 +20,7 @@
 #ifndef _IRS_MILEAGE_RATES_
 #define _IRS_MILEAGE_RATES_
 #include <time.h>
+#include "pentaledger/transportation/MileageCategories.hpp"
 
 namespace pentaledger
 {
@@ -30,8 +31,21 @@ namespace pentaledger
   
     @{ */
 
-        //! \todo Implement IRS mileage rates
-
+        //! \brief IRS mileage rate
+        //!
+        //! This struct contains the mileage rates for a given type and date.
+        //! Periodically, the IRS updates the mileage rates for each type.
+        //! In some cases, the mileage rates have been updated mid year, 
+        //! causing us to have to deal with mid-year changes.
+        struct MileageRates
+        {
+            //! \brief Starting date for the mileage rate
+            time_t start;
+            //! \brief Mileage category (e.g., business, medical, personal)
+            eMileageCatgories category;
+            //! \brief Mileage rate in cents per mile
+            double rate_per_mile;
+        };
     };
 };
 
