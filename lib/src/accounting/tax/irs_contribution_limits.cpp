@@ -29,10 +29,10 @@ namespace pentaledger
             {2025, {
                 {OVERALL_IRA_LIMIT, {2025, OVERALL_IRA_LIMIT, 23500, 31000}},
                 {IRA, {2025, IRA, 7000, 8000}},
-                {ROTH_IRA, {2025, ROTH_IRA, 6500, 1000}},
-                {SIMPLE_IRA, {2025, SIMPLE_IRA, 15500, 3000}},
-                {SEP_IRA, {2025, SEP_IRA, 66000, 7500}},
-                {R401K, {2025, R401K, 23500, 7500}},
+                {ROTH_IRA, {2025, ROTH_IRA, 7000, 8000}},
+                {SIMPLE_IRA, {2025, SIMPLE_IRA, 16500, 19500}},
+                {SEP_IRA, {2025, SEP_IRA, 70000, 70000}},
+                {R401K, {2025, R401K, 23500, 31000}},
                 {OTHER, {2025, OTHER, 0.0, 0.0}} // Placeholder for other accounts
             }},
             {2024, {
