@@ -4,9 +4,10 @@ project(PentaLedger VERSION 0.0.1 LANGUAGES CXX)
 # Enable testing
 enable_testing()
 
-# Set C++ standard
-set(CMAKE_CXX_STANDARD 17)
+# Set C++ standard and features
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
 
 # turn off deprecated warnings in gtest, etc.
 set(CMAKE_WARN_DEPRECATED OFF CACHE BOOL "" FORCE)
@@ -49,3 +50,4 @@ endif()
 add_subdirectory(lib)
 add_subdirectory(cli)
 add_subdirectory(tests) 
+#add_subdirectory(server)
