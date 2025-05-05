@@ -13,3 +13,4 @@ PentaLedger Formula Reference documentation
    introduction
    company
    vehicles
+   gambling
