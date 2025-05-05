@@ -6,7 +6,7 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = 'PentaLedger Formula Reference'
+project = 'PentaLedger Software Functional Specification'
 copyright = '2025, Joe Turner'
 author = 'Joe Turner'
 release = 'v0.0.0'

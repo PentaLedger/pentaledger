@@ -10,3 +10,4 @@ PentaLedger Formula Reference documentation
    :maxdepth: 2
    :caption: Contents:
 
+   introduction
