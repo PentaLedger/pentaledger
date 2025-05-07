@@ -30,7 +30,7 @@ The following is prohibited:
 
 ## Reporting and Enforcement
 
-If you see behavior that violates this code, please contact **[YOUR EMAIL OR HANDLE]**. We will take reports seriously and act as necessary, which may include warnings, revocation of access, or banning repeat offenders.
+If you see behavior that violates this code, please contact **joe.turner@infinity-surge.com**. We will take reports seriously and act as necessary, which may include warnings, revocation of access, or banning repeat offenders.
 
 ---
 
