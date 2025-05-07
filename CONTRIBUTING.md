@@ -1,49 +1,52 @@
-# Contributing to PentaLedger
-We love your input! We want to make contributing to this project as easy and transparent as possible, whether it's:
+# Contributing Guidelines
 
-- Reporting a bug
-- Discussing the current state of the code
-- Submitting a fix
-- Proposing new features
-- Becoming a maintainer
+Thanks for your interest in contributing! This project is focused on building reliable, high-quality software. We welcome contributions from anyone willing to engage thoughtfully and focus on improving the project.
 
-## We Develop with Github
-We use github to host code, to track issues and feature requests, as well as accept pull requests.
+## What We're Looking For
 
-## We Use [Github Flow](https://guides.github.com/introduction/flow/index.html), So All Code Changes Happen Through Pull Requests
-Pull requests are the best way to propose changes to the codebase (we use [Github Flow](https://guides.github.com/introduction/flow/index.html)). We actively welcome your pull requests:
+We welcome:
+- Bug reports that are clear, reproducible, and well-documented.
+- Feature requests that align with the project's scope and purpose.
+- Code contributions that are clean, tested, and improve technical quality.
+- Documentation improvements that clarify how the project works.
 
-1. Fork the repo and create your branch from `main`.
-2. If you've added code that should be tested, add tests.
-3. If you've changed APIs, update the documentation.
-4. Ensure the test suite passes.
-5. Make sure your code lints.
-6. Issue that pull request!
+## Ground Rules
 
-## Any contributions you make will be under the GPL v2 Software License
-In short, when you submit code changes, your submissions are understood to be 
-under the same [GPL v2](LICENSE) that 
-covers the project. Feel free to contact the maintainers if that's a concern.
+Before contributing, please read and follow our [Code of Conduct](./CODE_OF_CONDUCT.md). This project is technical in nature — political or ideological commentary is not welcome.
 
-## Report bugs using Github's [issues](https://github.com/PentaLedger/pentaledger/issues)
-We use GitHub issues to track public bugs. Report a bug by [opening a new issue](https://github.com/PentaLedger/pentaledger/issues), it's that easy!
+We ask all contributors to:
+- Focus on the code and the goals of the project.
+- Explain the **why** behind changes, not just the **what**.
+- Keep discussions productive and technical.
+- Accept constructive feedback with professionalism.
 
-## Write bug reports with detail, background, and sample code
+## Getting Started
 
-**Great Bug Reports** tend to have:
+1. **Fork the repository** and create a branch for your changes.
+2. Make your changes in a clean, logical commit history.
+3. Test your code and confirm it builds/runs as expected.
+4. Submit a pull request with a clear explanation of your changes.
 
-- A quick summary and/or background
-- Steps to reproduce
-  - Be specific!
-  - Give sample code if you can. 
-- What you expected would happen
-- What actually happens
-- Notes (possibly including why you think this might be happening, or stuff you tried that didn't work)
+We use conventional pull requests:
+- One feature or fix per PR.
+- Write concise but informative commit messages.
+- Format your code consistently with the rest of the project.
 
-People *love* thorough bug reports. I'm not even kidding.
+## Submitting Issues
 
-## License
-By contributing, you agree that your contributions will be licensed under its AGPL v3 Software License.
+When opening an issue:
+- Use a descriptive title.
+- Include steps to reproduce if reporting a bug.
+- Explain **why** a feature or change is valuable.
 
-## References
-This document was adapted from the open-source contribution guidelines for [Facebook's Draft](https://github.com/facebook/draft-js/blob/a9316a723f9e918afde44dea68b5f9f39b7d9b00/CONTRIBUTING.md)
+## Code Style & Testing
+
+- Follow existing patterns in the codebase.
+- Add tests where applicable.
+- Avoid unnecessary dependencies or complexity.
+
+## Final Note
+
+We’re building something worth maintaining — that means we value correctness, clarity, and performance over flashiness or trendiness. If you're aligned with that mindset, you're in the right place.
+
+Thanks again for taking the time to contribute!
