@@ -27,6 +27,7 @@ The following is prohibited:
 - Disruptive, inflammatory, or off-topic behavior.
 - Repeated attempts to politicize the project or push ideological views.
 - Publishing private or confidential information without permission.
+- Submitting AI-generated bug reports, feature suggestions, or pull requests without personal verification. Submissions that are clearly generated without care — including hallucinated errors, fake references, or incoherent code — will result in an immediate ban. This project values human judgment and technical accuracy over volume or convenience.
 
 ## Reporting and Enforcement
 

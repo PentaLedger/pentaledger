@@ -2,6 +2,20 @@
 
 Thanks for your interest in contributing! This project is focused on building reliable, high-quality software. We welcome contributions from anyone willing to engage thoughtfully and focus on improving the project.
 
+## AI-Generated Contributions
+
+You are personally responsible for anything you submit — including content generated with the help of AI tools.
+
+Do not submit:
+
+- AI-generated code that hasn't been fully reviewed and understood by you.
+- Hallucinated bug reports, fictional errors, or fabricated references.
+- Low-effort or incoherent pull requests clearly generated without care.
+
+If you submit AI-generated content that is misleading, broken, or sloppy, you will be permanently banned.
+
+This project values accuracy, clarity, and technical rigor. If you use AI tools, use them responsibly — as an assistant, not a replacement for understanding.
+
 ## What We're Looking For
 
 We welcome:
