@@ -182,4 +182,5 @@ Gambling Tax Summary - summary to the specified period, without details.
         Travel Mileage          1322.32
         Travel Airfare             0.00
         Lottery                 1000.00
-       
+
+
