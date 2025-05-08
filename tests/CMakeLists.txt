@@ -17,6 +17,7 @@ add_executable(pentaledger_tests
     src/utility/Environment_test.cpp
     src/utility/wordwrap_test.cpp
     src/converter/base64_test.cpp
+    src/accounting/niit_test.cpp
 #    src/converter/ascii_to_ebcdic_test.cpp
 )
 
