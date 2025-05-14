@@ -1,0 +1,35 @@
+name: Build documentation
+
+on:
+  push:
+    branches:
+      - main
+      - build-release-docs
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v3
+
+      - name: Set version from tag or file
+        id: version
+        run: |
+          VERSION=$(git describe --tags --abbrev=0 2>/dev/null || cat VERSION.txt)
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+
+      - name: Build PDF with Sphinx
+        run: |
+          cd docs/specification
+          make -C latexpdf
+          mv docs/specification/build/latex/*.pdf pentaledger-docs-${{ steps.version.outputs.version }}.pdf
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ steps.version.outputs.version }}
+          name: Release ${{ steps.version.outputs.version }}
+          files: pentaledger-docs-${{ steps.version.outputs.version }}.pdf
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
