@@ -34,10 +34,12 @@ jobs:
           python -m pip install --upgrade pip
           pip install "sphinx[latex]"
           
-      - name: Build PDF with Sphinx
+      - name: Build PDF docs
         run: |
-          cd docs/specification
-          make latexpdf
+          sudo apt-get update
+          sudo apt-get install -y latexmk texlive-latex-extra texlive-fonts-recommended texlive-latex-recommended
+          sphinx-build -b latex docs/specification/source docs/specification/build/latex
+          make -C docs/specification/build/latex all-pdf
 
       - name: Rename PDF for release
         run: |
