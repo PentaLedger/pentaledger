@@ -22,7 +22,7 @@ jobs:
       - name: Build PDF with Sphinx
         run: |
           cd docs/specification
-          make -C latexpdf
+          make latexpdf
           mv docs/specification/build/latex/*.pdf pentaledger-docs-${{ steps.version.outputs.version }}.pdf
 
       - name: Create GitHub Release
