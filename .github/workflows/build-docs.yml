@@ -22,7 +22,7 @@ jobs:
       - name: Install LaTeX dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y latexmk texlive-latex-extra texlive-fonts-recommended texlive-latex-recommended
+          sudo apt-get install -y latexmk texlive-latex-extra texlive-fonts-recommended texlive-latex-recommended sphinx-build
 
       - name: Build PDF with Sphinx
         run: |
