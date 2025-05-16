@@ -48,8 +48,16 @@ interface components, data handling, and reporting capabilities.
 Audience
 ********
 
+This document is intended to help the development team to validate that they are building the
+right application, and verify that the features they have built are built correctly. It is also intended
+for the project sponsors to sign off on as a definitive list of requirements. Finally, the project
+coach can use this document to validate the development team is meeting the agreed upon
+requirements during his evaluation of the team's efforts.
+
 Definitions and Acronyms
 ************************
 
-Document Overview
-*****************
+CSV. Comma Separated Values.  A simple text file format for storing data in a table structure.
+
+
+
