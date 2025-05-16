@@ -1,4 +1,5 @@
 #include "pentaledger_server.hpp"
+#include <drogon/drogon.h>
 #include <drogon/HttpAppFramework.h>
 #include <drogon/HttpResponse.h>
 #include <drogon/HttpTypes.h>
@@ -9,7 +10,8 @@
 namespace pentaledger {
 
 PentaLedgerServer::PentaLedgerServer() {
-    app_ = std::make_unique<drogon::HttpAppFramework>();
+    // Initialize the server
+    app_ = &drogon::app();
 }
 
 PentaLedgerServer::~PentaLedgerServer() = default;
@@ -18,10 +20,15 @@ void PentaLedgerServer::initialize(const std::string& configFile) {
     loadConfig(configFile);
     
     // Set server configuration
-    app_->setLogLevel(trantor::Logger::kInfo);
-    app_->setThreadNum(config_.threadNum);
+    app_->setLogPath("./");
+    app_->setLogLevel(trantor::Logger::kWarn);
+    app_->setThreadNum(4);
     app_->setDocumentRoot("./www");
-    
+    app_->setUploadPath("./uploads");
+    app_->enableGzip(true);
+    app_->enableBrotli(true);
+    app_->setStaticFilesCacheTime(0);
+    app_->setIdleConnectionTimeout(60);
     // Initialize routes
     initializeRoutes();
 }
@@ -51,6 +58,11 @@ void PentaLedgerServer::loadConfig(const std::string& configFile) {
         std::cerr << "Error loading config: " << e.what() 
                   << ". Using default configuration." << std::endl;
     }
+
+    std::cout << "host: " << config_.host << std::endl;
+    std::cout << "port: " << config_.port << std::endl;
+    std::cout << "threadNum: " << config_.threadNum << std::endl;
+    std::cout << "logLevel: " << config_.logLevel << std::endl;
 }
 
 void PentaLedgerServer::initializeRoutes() {
@@ -72,7 +84,11 @@ void PentaLedgerServer::initializeRoutes() {
 void PentaLedgerServer::start() {
     std::cout << "Starting PentaLedger server on " << config_.host 
               << ":" << config_.port << std::endl;
+    
+    // Add listener with configured host and port
     app_->addListener(config_.host, config_.port);
+    
+    // Start the server
     app_->run();
 }
 

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef PENTALEDGER_SERVER_HPP
+#define PENTALEDGER_SERVER_HPP
 
 #include <drogon/HttpAppFramework.h>
 #include <drogon/HttpController.h>
@@ -31,7 +32,7 @@ private:
     };
 
     Config config_;
-    std::unique_ptr<drogon::HttpAppFramework> app_;
+    drogon::HttpAppFramework* app_;
     
     // Load configuration from file
     void loadConfig(const std::string& configFile);
@@ -41,3 +42,5 @@ private:
 };
 
 } // namespace pentaledger 
+
+#endif // PENTALEDGER_SERVER_HPP 
