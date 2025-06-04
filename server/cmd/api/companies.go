@@ -21,5 +21,5 @@ func (app *application) showCompanyHandler(w http.ResponseWriter, r *http.Reques
 		return
 	}
 
-	fmt.Fprintf(w, "show the details of movie %d\n", id)
+	fmt.Fprintf(w, "show the details of company %d\n", id)
 }
