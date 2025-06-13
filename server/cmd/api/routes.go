@@ -24,6 +24,6 @@ func (app *application) routes() http.Handler {
 	router.HandlerFunc(http.MethodPost, "/v1/company", app.createCompanyHandler)
 	router.HandlerFunc(http.MethodGet, "/v1/company/:id", app.showCompanyHandler)
 
-	// Return the httprouter instance.
-	return router
+	// Wrap the router with the panic recovery middleware.
+	return app.recoverPanic(router)
 }
