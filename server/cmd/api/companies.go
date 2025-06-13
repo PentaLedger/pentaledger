@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 	"net/http"
+
+	"pentaledger.infinity-surge.com/internal/data" // New import
 )
 
 // Add a createCompanyHandler for the "POST /v1/company" endpoint. For now we simply
@@ -15,11 +17,23 @@ func (app *application) createCompanyHandler(w http.ResponseWriter, r *http.Requ
 // the interpolated "id" parameter from the current URL and include it in a placeholder
 // response.
 func (app *application) showCompanyHandler(w http.ResponseWriter, r *http.Request) {
+
 	id, err := app.readIDParam(r)
 	if err != nil {
 		http.NotFound(w, r)
 		return
 	}
 
-	fmt.Fprintf(w, "show the details of company %d\n", id)
+	app.logger.Debug("company %d\n", id)
+	// Create a new instance of the Movie struct, containing the ID we extracted from
+	// the URL and some dummy data. Also notice that we deliberately haven't set a
+	// value for the Year field.
+	company := data.SampleCompany()
+
+	err = app.writeJSON(w, http.StatusOK, envelope{"company": company}, nil)
+	if err != nil {
+		// Use the new serverErrorResponse() helper.
+		app.serverErrorResponse(w, r, err)
+	}
+
 }
