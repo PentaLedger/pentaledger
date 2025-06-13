@@ -30,8 +30,7 @@ func (app *application) showCompanyHandler(w http.ResponseWriter, r *http.Reques
 	// value for the Year field.
 	company := data.SampleCompany()
 
-	// Encode the struct to JSON and send it as the HTTP response.
-	err = app.writeJSON(w, http.StatusOK, company, nil)
+	err = app.writeJSON(w, http.StatusOK, envelope{"company": company}, nil)
 	if err != nil {
 		app.logger.Error(err.Error())
 		http.Error(w, "The server encountered a problem and could not process your request", http.StatusInternalServerError)
