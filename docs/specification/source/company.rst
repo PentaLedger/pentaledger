@@ -17,7 +17,21 @@ a set of books, and pays taxes, or has other regulatory submissions required.
 |             |                                 | reported on a Schedule C tax form attached to|
 |             |                                 | owner's 1040.                                |  
 +-------------+---------------------------------+----------------------------------------------+
-
+| 3           | Corporation                     | A corporation is a legal entity that is      |
+|             |                                 | separate from its owners.                    |
++-------------+---------------------------------+----------------------------------------------+
+| 4           | Partnership                     | A partnership is a legal entity that is      |
+|             |                                 | separate from its owners.                    |
++-------------+---------------------------------+----------------------------------------------+
+| 5           | Limited Liability Partnership   | A limited liability partnership is a legal   |
+|             |                                 | entity that is separate from its owners.     |
++-------------+---------------------------------+----------------------------------------------+
+| 6           | PAC                             | A Political Action Committee is a legal      |
+|             |                                 | entity that is required to file FEC reports. |
++-------------+---------------------------------+----------------------------------------------+
+| 7           | Non-Profit                      | A non-profit is a legal entity that is       |
+|             |                                 | separate from its owners.                    |
++-------------+---------------------------------+----------------------------------------------+
 
 Individual or Joint taxpayer
 ----------------------------
@@ -25,9 +39,10 @@ Individual or Joint taxpayer
 Sole Proprietorship
 -------------------
 
-
 Single Member LLC 
 -----------------
 
+Corporation
+-----------
 A single member LLC (SMLLC) is a disregarded entity for tax purposes, and does not provide 
 any tax benefits. The income and losses "flow up" onto the owners 1040. 
