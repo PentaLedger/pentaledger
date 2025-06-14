@@ -22,30 +22,12 @@ func (app *application) createCompanyHandler(w http.ResponseWriter, r *http.Requ
 	// Initialize a new Validator instance.
 	v := validator.New()
 
-	// Use the Check() method to execute our validation checks. This will add the
-	// provided key and error message to the errors map if the check does not evaluate
-	// to true. For example, in the first line here we "check that the title is not
-	// equal to the empty string". In the second, we "check that the length of the title
-	// is less than or equal to 500 bytes" and so on.
+	company := &input
 
-	v.Check(input.LegalName != "", "legal_name", "must be provided")
-	v.Check(len(input.LegalName) <= 500, "legal_name", "must not be more than 500 bytes long")
-
-	v.Check(input.EntityType != "", "entity_type", "must be provided")
-	v.Check(len(input.EntityType) <= 500, "entity_type", "must not be more than 500 bytes long")
-
-	v.Check(input.EIN != "", "ein", "must be provided")
-	v.Check(len(input.EIN) <= 500, "ein", "must not be more than 500 bytes long")
-
-	// Use the Valid() method to see if any of the checks failed. If they did, then use
-	// the failedValidationResponse() helper to send a response to the client, passing
-	// in the v.Errors map.
-	if !v.Valid() {
+	if data.ValidateCompany(v, company); !v.Valid() {
 		app.failedValidationResponse(w, r, v.Errors)
 		return
 	}
-
-	fmt.Fprintf(w, "%+v\n", input)
 	fmt.Fprintf(w, "%+v\n", input)
 }
 
