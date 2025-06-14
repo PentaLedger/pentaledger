@@ -10,7 +10,15 @@ import (
 // Add a createCompanyHandler for the "POST /v1/company" endpoint. For now we simply
 // return a plain-text placeholder response.
 func (app *application) createCompanyHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintln(w, "create a new company")
+	var input data.Company
+
+	err := app.readJSON(w, r, &input)
+	if err != nil {
+		app.badRequestResponse(w, r, err)
+		return
+	}
+
+	fmt.Fprintf(w, "%+v\n", input)
 }
 
 // Add a showCompanyHandler for the "GET /v1/company/:id" endpoint. For now, we retrieve
