@@ -48,7 +48,8 @@ func main() {
 	// corresponding flags are provided.
 	flag.IntVar(&cfg.port, "port", 4000, "API server port")
 	flag.StringVar(&cfg.env, "env", "development", "Environment (development|staging|production)")
-	flag.StringVar(&cfg.db.dsn, "db-dsn", "postgres://pentaledger:pa55word@localhost/pentaledger?sslmode=disable", "PostgreSQL DSN")
+	flag.StringVar(&cfg.db.dsn, "db-dsn", os.Getenv("PENTALEDGER_DB_DSN"), "PostgreSQL DSN")
+
 	flag.Parse()
 
 	// Initialize a new structured logger which writes log entries to the standard out
