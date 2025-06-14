@@ -2,6 +2,8 @@ package data
 
 import (
 	"time"
+
+	"pentaledger.infinity-surge.com/internal/validator"
 )
 
 // Company represents a company in the system
@@ -57,4 +59,15 @@ func SampleCompany() Company {
 		CreatedAt:        time.Now(),
 		UpdatedAt:        time.Now(),
 	}
+}
+
+func ValidateCompany(v *validator.Validator, company *Company) {
+	v.Check(company.LegalName != "", "legal_name", "must be provided")
+	v.Check(len(company.LegalName) <= 500, "legal_name", "must not be more than 500 bytes long")
+
+	v.Check(company.EntityType != "", "entity_type", "must be provided")
+	v.Check(len(company.EntityType) <= 500, "entity_type", "must not be more than 500 bytes long")
+
+	v.Check(company.EIN != "", "ein", "must be provided")
+	v.Check(len(company.EIN) <= 500, "ein", "must not be more than 500 bytes long")
 }
