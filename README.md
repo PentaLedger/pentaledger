@@ -16,3 +16,15 @@ This repository contains:
 - The user interface (Sveltekit website)
 - The REST API server
 - Documentation
+
+# Branch and Release Philosophy
+
+- `main` branch is stable and versioned release are released off of main.
+- `next` branch is next working development release (unstable)
+- Pull requests mandatory against next branch.
+
+# Docker Images in GitHub Registry
+
+This project generates several docker images that are stored in
+the github registry.  A docker compose that pulls everything 
+together is forthcoming.
