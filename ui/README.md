@@ -34,3 +34,5 @@ docker build -t pentaledger-ui .
 ### Run
 
 ```
+docker run -p 8080:8080 pentaledger-ui
+```
