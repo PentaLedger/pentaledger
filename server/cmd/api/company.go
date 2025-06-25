@@ -42,7 +42,7 @@ func (app *application) showCompanyHandler(w http.ResponseWriter, r *http.Reques
 		Version:   1,
 	}
 
-	err = app.writeJSON(w, http.StatusOK, company, nil)
+	err = app.writeJSON(w, http.StatusOK, envelope{"company": company}, nil)
 	if err != nil {
 		app.logger.Error(err.Error())
 		http.Error(w, "The server encountered a problem and could not process your request", http.StatusInternalServerError)
