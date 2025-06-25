@@ -36,7 +36,7 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t ghcr.io/${{ steps.vars.outputs.owner_lc }}/${{ env.IMAGE_NAME }} ./ui
+          docker build -t ghcr.io/${{ steps.vars.outputs.owner_lc }}/${{ env.IMAGE_NAME }} ./server
 
       - name: Push Docker image
         run: |
