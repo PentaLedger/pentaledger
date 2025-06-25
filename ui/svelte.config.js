@@ -21,7 +21,7 @@ const config = {
 				precompress: false,
 				strict: true
 			  })
-			  : adapterAuto
+			  : adapterAuto()
 	}
 };
 
