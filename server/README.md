@@ -9,3 +9,9 @@
 To specify port, and environment:
 
 ` go run ./cmd/api -port=3030 -env=production`
+
+## Building docker image
+
+```
+docker build -t pentaledger-api-server .
+```
