@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 
-curl localhost:4000/v1/healthcheck
+curl -i localhost:4000/v1/healthcheck
 
 curl -X POST localhost:4000/v1/company
 
