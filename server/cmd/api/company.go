@@ -16,21 +16,33 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
+	"time"
+
+	"pentaledger.infinity-surge.com/internal/data"
 )
 
-// Declare a handler which writes a plain-text response with information about the
-// application status, operating environment and version.
-func (app *application) healthcheckHandler(w http.ResponseWriter, r *http.Request) {
-	env := envelope{
-		"status": "available",
-		"system_info": map[string]string{
-			"environment": app.config.env,
-			"version":     version,
-		},
+func (app *application) createCompanyHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintln(w, "create a new company")
+}
+
+func (app *application) showCompanyHandler(w http.ResponseWriter, r *http.Request) {
+
+	id, err := app.readIDParam(r)
+	if err != nil {
+		http.NotFound(w, r)
+		return
 	}
 
-	err := app.writeJSON(w, http.StatusOK, env, nil)
+	company := data.Company{
+		ID:        id,
+		CreatedAt: time.Now(),
+		Name:      "Example, Inc.",
+		Version:   1,
+	}
+
+	err = app.writeJSON(w, http.StatusOK, envelope{"company": company}, nil)
 	if err != nil {
 		app.serverErrorResponse(w, r, err)
 	}

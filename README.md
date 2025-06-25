@@ -29,3 +29,5 @@ This project generates several docker images that are stored in
 the github registry.  To test:
 
 ``` docker compose up ```
+
+Point your browser to http://localhost:8080

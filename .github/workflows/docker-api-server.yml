@@ -8,7 +8,11 @@ on:
       - '.github/workflows/docker-api-server.yml'
 
   workflow_dispatch:
-
+    inputs:
+      branch:
+        description: 'branch'
+        required: true
+        
 env:
   IMAGE_NAME: pentaledger-api-server
 
