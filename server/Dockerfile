@@ -21,4 +21,4 @@ COPY --from=builder /app/bin/pentaledger-api .
 
 EXPOSE 4000
 
-CMD ["./nw-manufacturing-api"]
+CMD ["./pentaledger-api"]
