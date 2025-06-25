@@ -13,38 +13,17 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with this program; If not, see <http://www.gnu.org/licenses/>.
-package main
+package data
 
 import (
-	"fmt"
-	"net/http"
 	"time"
-
-	"pentaledger.infinity-surge.com/internal/data"
 )
 
-func (app *application) createCompanyHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintln(w, "create a new company")
-}
-
-func (app *application) showCompanyHandler(w http.ResponseWriter, r *http.Request) {
-
-	id, err := app.readIDParam(r)
-	if err != nil {
-		http.NotFound(w, r)
-		return
-	}
-
-	company := data.Company{
-		ID:        id,
-		CreatedAt: time.Now(),
-		Name:      "Example, Inc.",
-		Version:   1,
-	}
-
-	err = app.writeJSON(w, http.StatusOK, company, nil)
-	if err != nil {
-		app.logger.Error(err.Error())
-		http.Error(w, "The server encountered a problem and could not process your request", http.StatusInternalServerError)
-	}
+type Company struct {
+	ID        int64     `json:"id"`         // Unique integer ID for the company
+	CreatedAt time.Time `json:"created_at"` // Timestamp for when the company is added to our database
+	Name      string    `json:"name"`       // Company name
+	Year      int32     `json:"year"`       // Year the company was founded
+	Version   int32     `json:"version"`    // The version number starts at 1 and will be incremented each
+	// time the Company information is updated
 }
