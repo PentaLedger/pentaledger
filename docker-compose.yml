@@ -1,0 +1,45 @@
+version: '3.9'
+
+services:
+
+  db:
+    image: postgres:16
+    container_name: pentaledger-db
+    restart: always
+    environment:
+      POSTGRES_DB: pentaledger
+      POSTGRES_USER: ledgeruser
+      POSTGRES_PASSWORD: ledgerpass
+    volumes:
+      - pentaledger_db_data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+
+  pentaledger-api:
+    image: ghcr.io/pentaledger/pentaledger-api-server:latest
+    restart: always
+    container_name: pentaledger-api
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_NAME: pentaledger
+      DB_USER: ledgeruser
+      DB_PASSWORD: ledgerpass
+    ports:
+      - 4000:4000/tcp
+
+  pentaledger-ui:
+    image: ghcr.io/pentaledger/pentaledger-ui:latest
+    restart: always
+    container_name: pentaledger-ui
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    depends_on:
+      - pentaledger-api  
+    ports:
+      - 8080:8080/tcp
+
+volumes:
+  pentaledger_db_data:

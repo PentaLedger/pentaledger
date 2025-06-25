@@ -1,0 +1,20 @@
+# Binaries and executables
+*.exe
+*.bin
+*.out
+
+# Go build cache
+.go/
+bin/
+pkg/
+
+# Dependency management
+# If using Go modules, typically go.mod and go.sum are tracked,
+# but if a vendor directory is used for dependencies, it should be ignored.
+# vendor/
+
+# Editor/IDE specific files
+.idea/
+.vscode/
+*.swp
+*.bak

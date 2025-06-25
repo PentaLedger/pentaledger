@@ -13,25 +13,17 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with this program; If not, see <http://www.gnu.org/licenses/>.
-package main
+package data
 
 import (
-	"net/http"
+	"time"
 )
 
-// Declare a handler which writes a plain-text response with information about the
-// application status, operating environment and version.
-func (app *application) healthcheckHandler(w http.ResponseWriter, r *http.Request) {
-	env := envelope{
-		"status": "available",
-		"system_info": map[string]string{
-			"environment": app.config.env,
-			"version":     version,
-		},
-	}
-
-	err := app.writeJSON(w, http.StatusOK, env, nil)
-	if err != nil {
-		app.serverErrorResponse(w, r, err)
-	}
+type Company struct {
+	ID        int64     `json:"id"`         // Unique integer ID for the company
+	CreatedAt time.Time `json:"created_at"` // Timestamp for when the company is added to our database
+	Name      string    `json:"name"`       // Company name
+	Year      int32     `json:"year"`       // Year the company was founded
+	Version   int32     `json:"version"`    // The version number starts at 1 and will be incremented each
+	// time the Company information is updated
 }
