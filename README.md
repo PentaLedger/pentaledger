@@ -26,5 +26,6 @@ This repository contains:
 ## Docker Images in GitHub Registry
 
 This project generates several docker images that are stored in
-the github registry.  A docker compose that pulls everything 
-together is forthcoming.
+the github registry.  To test:
+
+``` docker compose up ```
