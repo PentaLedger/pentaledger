@@ -7,6 +7,8 @@ on:
       - 'ui/**'
       - '.github/workflows/docker-api-server.yml'
 
+  workflow_dispatch:
+
 env:
   IMAGE_NAME: pentaledger-api-server
 
