@@ -27,6 +27,7 @@ services:
       DB_NAME: pentaledger
       DB_USER: ledgeruser
       DB_PASSWORD: ledgerpass
+      PENTALEDGER_DB_DSN: postgres://ledgeruser:ledgerpass@db:5432/pentaledger?sslmode=disable
     ports:
       - 4000:4000/tcp
 
