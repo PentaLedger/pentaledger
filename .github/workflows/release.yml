@@ -1,0 +1,46 @@
+name: Create Release
+
+on:
+  push:
+    tags:
+      - 'v*' # Triggers on any tag like v1.0.0, v1.0.0-beta.1
+
+jobs:
+  release:
+    name: Create GitHub Release
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Set up Git
+      run: |
+        git fetch --tags
+
+    - name: Extract Tag Info
+      id: extract_tag
+      run: |
+        tag="${GITHUB_REF#refs/tags/}"
+        echo "tag=$tag" >> $GITHUB_OUTPUT
+        if [[ "$tag" == *"-"* ]]; then
+          echo "prerelease=true" >> $GITHUB_OUTPUT
+        else
+          echo "prerelease=false" >> $GITHUB_OUTPUT
+        fi
+
+    - name: Build (or Package)
+      run: |
+        # Example build step
+        mkdir dist && echo "Built artifact" > dist/output.txt
+
+    - name: Create GitHub Release
+      uses: softprops/action-gh-release@v1
+      with:
+        tag_name: ${{ steps.extract_tag.outputs.tag }}
+        name: Release ${{ steps.extract_tag.outputs.tag }}
+        prerelease: ${{ steps.extract_tag.outputs.prerelease }}
+        files: |
+          dist/output.txt
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
