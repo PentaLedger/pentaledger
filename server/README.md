@@ -15,3 +15,9 @@ To specify port, and environment:
 ```
 docker build -t pentaledger-api-server .
 ```
+
+## Database migration
+
+```
+migrate -path=./migrations -database=$PENTALEDGER_DB_DSN up  
+```
