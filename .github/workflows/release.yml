@@ -5,6 +5,9 @@ on:
     tags:
       - 'v*' # Triggers on any tag like v1.0.0, v1.0.0-beta.1
 
+permissions:
+  contents: write  # required for creating releases
+  
 jobs:
   release:
     name: Create GitHub Release
