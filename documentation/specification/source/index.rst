@@ -11,3 +11,4 @@ PentaLedger Formula Reference documentation
    :caption: Contents:
 
    introduction
+   formulas
