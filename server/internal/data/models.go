@@ -22,14 +22,17 @@ import (
 
 var (
 	ErrRecordNotFound = errors.New("record not found")
+	ErrEditConflict   = errors.New("edit conflict")
 )
 
 type Models struct {
 	Companys CompanyModel
+	Users    UserModel
 }
 
 func NewModels(db *sql.DB) Models {
 	return Models{
 		Companys: CompanyModel{DB: db},
+		Users:    UserModel{DB: db},
 	}
 }
