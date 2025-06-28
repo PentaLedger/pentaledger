@@ -16,6 +16,7 @@
 package data
 
 import (
+	"database/sql"
 	"time"
 )
 
@@ -26,4 +27,24 @@ type Company struct {
 	Year      int32     `json:"year"`       // Year the company was founded
 	Version   int32     `json:"version"`    // The version number starts at 1 and will be incremented each
 	// time the Company information is updated
+}
+
+type CompanyModel struct {
+	DB *sql.DB
+}
+
+func (m CompanyModel) Insert(Company *Company) error {
+	return nil
+}
+
+func (m CompanyModel) Get(id int64) (*Company, error) {
+	return nil, nil
+}
+
+func (m CompanyModel) Update(Company *Company) error {
+	return nil
+}
+
+func (m CompanyModel) Delete(id int64) error {
+	return nil
 }
