@@ -15,6 +15,7 @@ PentaLedger Formula Reference documentation
    company
    corporation
    coa
+   vendor
    vehicles
    gambling
    formulas
