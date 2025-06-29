@@ -1,5 +1,5 @@
-Formulas
-########
+Formulas Reference
+##################
 
 Key Performance Metrics (KPIs)
 ==============================
@@ -150,3 +150,10 @@ Working capital is a measure of the business's available operating liquidity, wh
 .. math::
 
     Working Capital = Current Assets - Current Liabilities
+
+Payroll
+=======
+
+Taxes 
+=====
+

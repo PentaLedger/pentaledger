@@ -10,5 +10,6 @@ PentaLedger Formula Reference documentation
    :maxdepth: 2
    :caption: Contents:
 
+   history
    introduction
    formulas
