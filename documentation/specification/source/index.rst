@@ -10,5 +10,13 @@ PentaLedger Formula Reference documentation
    :maxdepth: 2
    :caption: Contents:
 
+   history
    introduction
+   company
+   individual
+   corporation
+   coa
+   vendor
+   vehicles
+   gambling
    formulas
