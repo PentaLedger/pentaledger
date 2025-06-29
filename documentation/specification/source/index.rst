@@ -12,6 +12,9 @@ PentaLedger Formula Reference documentation
 
    history
    introduction
+   company
+   corporation
+   coa
    vehicles
    gambling
    formulas

@@ -264,7 +264,8 @@ Future Enhancements (Post-MVP)
 Commercial Vehicles
 ------------------- 
 
-Maintenance record keeping.  
+Maintenance record keeping. 
+ 
 - subject rented greater of 30 days
 - owned or leased vehicles.
 
