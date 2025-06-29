@@ -12,4 +12,5 @@ PentaLedger Formula Reference documentation
 
    history
    introduction
+   vehicles
    formulas
