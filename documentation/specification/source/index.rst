@@ -13,6 +13,7 @@ PentaLedger Formula Reference documentation
    history
    introduction
    company
+   individual
    corporation
    coa
    vendor

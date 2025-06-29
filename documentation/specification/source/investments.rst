@@ -4,9 +4,14 @@ Investments
 Capital Losses and Carryforwards
 ================================
 
-Tracking of capital losses is generally done outside the journals, with the exception of C corporations that journalize a Deferred Tax Asset using ASC 740 rules. For individuals, carryforwards are a tax attribute tracked in IRS filings (e.g., Schedule D) rather than in accrual accounting.
+Tracking of capital losses is generally done outside the journals, with the exception of 
+C corporations that journalize a Deferred Tax Asset using ASC 740 rules. For individuals, 
+carryforwards are a tax attribute tracked in IRS filings (e.g., Schedule D) rather 
+than in accrual accounting.
 
-Capital losses can offset capital gains without limit. If losses exceed gains, up to $3,000 of the excess loss can be deducted against ordinary income (e.g., wages). Any unused loss carries forward to future years without expiration.
+Capital losses can offset capital gains without limit. If losses exceed gains, up 
+to $3,000 of the excess loss can be deducted against ordinary income (e.g., wages). 
+Any unused loss carries forward to future years without expiration.
 
 Example
 -------
