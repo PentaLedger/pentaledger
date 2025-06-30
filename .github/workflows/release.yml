@@ -5,6 +5,9 @@ on:
     tags:
       - 'v*' # Triggers on any tag like v1.0.0, v1.0.0-beta.1
 
+permissions:
+  contents: write  # required for creating releases
+  
 jobs:
   release:
     name: Create GitHub Release
@@ -33,6 +36,12 @@ jobs:
       run: |
         # Example build step
         mkdir dist && echo "Built artifact" > dist/output.txt
+
+    - name: Check GitHub API Auth
+      run: |
+        curl -i -H "Authorization: token $GITHUB_TOKEN" https://api.github.com/repos/${{ github.repository }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Create GitHub Release
       uses: softprops/action-gh-release@v1
