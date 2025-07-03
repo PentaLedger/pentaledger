@@ -6,8 +6,9 @@
   <nav>
     <ul>
       <li><a href="/">Home</a></li>
-      <li><a href="/about">About</a></li>
-      <li><a href="/contact">Contact</a></li>
+      <li><a href="/governance">Governance</a></li>
+      <li><a href="/vehicles">Vehicles & Mileage</a></li>
+      <li><a href="/settings">Settings</a></li>
     </ul>
   </nav>
 </aside>
