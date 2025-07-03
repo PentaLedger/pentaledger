@@ -6,8 +6,13 @@
   <nav>
     <ul>
       <li><a href="/">Home</a></li>
-      <li><a href="/governance">Governance</a></li>
+      <li><a href="/governance">Governance/Compliance</a></li>
       <li><a href="/vehicles">Vehicles & Mileage</a></li>
+      <li><a href="/chart-of-accounts">Chart of Accounts</a></li>
+      <li><a href="/expenses">Expenses & Purchasing</a></li>
+      <li><a href="/payroll">Payroll</a></li>
+      <li><a href="/taxes">Taxes</a></li>
+      <li><a href="/reports">Reports</a></li>
       <li><a href="/settings">Settings</a></li>
     </ul>
   </nav>
