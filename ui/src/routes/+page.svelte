@@ -18,6 +18,20 @@
       <div class="card-value">87</div>
     </div>
   </div>
+  <div class="summary-cards">
+    <div class="card">
+      <div class="card-title">Total Users</div>
+      <div class="card-value">1,234</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Revenue</div>
+      <div class="card-value">$12,345</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Active Sessions</div>
+      <div class="card-value">87</div>
+    </div>
+  </div>
   <div class="dashboard-content">
     <div class="chart-placeholder">
       <span>Chart or Recent Activity</span>
