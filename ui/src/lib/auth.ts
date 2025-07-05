@@ -1,10 +1,12 @@
 import { writable } from 'svelte/store';
+import { browser } from '$app/environment';
+import type { UserRole } from './roles';
 
 // Define types
 interface User {
   email: string;
   name: string;
-  role: string;
+  role: UserRole;
 }
 
 interface AuthState {
@@ -20,10 +22,12 @@ export const auth = writable<AuthState>({
   isLoading: false
 });
 
-// Mock user data for demonstration
+// Mock user data for demonstration with different roles
 const mockUsers = [
-  { email: 'admin@pentaledger.com', password: 'admin123', name: 'Admin User', role: 'admin' },
-  { email: 'user@pentaledger.com', password: 'user123', name: 'Regular User', role: 'user' }
+  { email: 'admin@pentaledger.com', password: 'admin123', name: 'Admin User', role: 'admin' as UserRole },
+  { email: 'manager@pentaledger.com', password: 'manager123', name: 'Manager User', role: 'manager' as UserRole },
+  { email: 'accountant@pentaledger.com', password: 'accountant123', name: 'Accountant User', role: 'accountant' as UserRole },
+  { email: 'user@pentaledger.com', password: 'user123', name: 'Regular User', role: 'user' as UserRole }
 ];
 
 // Login function
@@ -40,7 +44,11 @@ export async function login(email: string, password: string) {
     if (user) {
       // Store user data (in real app, you'd store a JWT token)
       const userData: User = { email: user.email, name: user.name, role: user.role };
-      localStorage.setItem('user', JSON.stringify(userData));
+      
+      // Only access localStorage in browser
+      if (browser) {
+        localStorage.setItem('user', JSON.stringify(userData));
+      }
       
       auth.update(state => ({
         ...state,
@@ -61,7 +69,11 @@ export async function login(email: string, password: string) {
 
 // Logout function
 export function logout() {
-  localStorage.removeItem('user');
+  // Only access localStorage in browser
+  if (browser) {
+    localStorage.removeItem('user');
+  }
+  
   auth.update(state => ({
     ...state,
     user: null,
@@ -71,6 +83,9 @@ export function logout() {
 
 // Check if user is already logged in (on app startup)
 export function checkAuth() {
+  // Only access localStorage in browser
+  if (!browser) return;
+  
   const storedUser = localStorage.getItem('user');
   if (storedUser) {
     try {
@@ -87,5 +102,7 @@ export function checkAuth() {
   }
 }
 
-// Initialize auth check on import
-checkAuth(); 
+// Initialize auth check on import (only in browser)
+if (browser) {
+  checkAuth();
+} 
