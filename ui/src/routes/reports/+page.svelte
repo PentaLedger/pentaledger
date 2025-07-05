@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { auth } from '$lib/auth';
   import RoleGuard from '$lib/RoleGuard.svelte';
 
@@ -39,7 +39,52 @@
     }
   };
 
-  // Calculate totals
+  // Sample Balance Sheet data
+  const balanceData = {
+    assets: {
+      current: {
+        cash: 250000,
+        accountsReceivable: 180000,
+        inventory: 320000,
+        prepaidExpenses: 15000,
+        shortTermInvestments: 75000
+      },
+      fixed: {
+        equipment: 450000,
+        buildings: 1200000,
+        vehicles: 180000,
+        land: 800000,
+        accumulatedDepreciation: -320000
+      },
+      other: {
+        patents: 50000,
+        goodwill: 75000,
+        longTermInvestments: 200000
+      }
+    },
+    liabilities: {
+      current: {
+        accountsPayable: 95000,
+        shortTermLoans: 150000,
+        accruedExpenses: 25000,
+        incomeTaxesPayable: 45000,
+        currentPortionLongTermDebt: 50000
+      },
+      longTerm: {
+        longTermLoans: 800000,
+        bondsPayable: 500000,
+        deferredTaxes: 35000
+      }
+    },
+    equity: {
+      commonStock: 500000,
+      retainedEarnings: 425000,
+      additionalPaidInCapital: 75000,
+      treasuryStock: -25000
+    }
+  };
+
+  // Calculate P&L totals
   $: totalRevenue = Object.values(plData.revenue).reduce((sum, val) => sum + val, 0);
   $: totalCOGS = Object.values(plData.costOfGoods).reduce((sum, val) => sum + val, 0);
   $: totalOperatingExpenses = Object.values(plData.operatingExpenses).reduce((sum, val) => sum + val, 0);
@@ -49,7 +94,25 @@
   $: operatingIncome = grossProfit - totalOperatingExpenses;
   $: netIncome = operatingIncome + totalOtherIncome - totalOtherExpenses;
 
-  function updateDateRange(range) {
+  // Calculate Balance Sheet totals
+  $: totalCurrentAssets = Object.values(balanceData.assets.current).reduce((sum, val) => sum + val, 0);
+  $: totalFixedAssets = Object.values(balanceData.assets.fixed).reduce((sum, val) => sum + val, 0);
+  $: totalOtherAssets = Object.values(balanceData.assets.other).reduce((sum, val) => sum + val, 0);
+  $: totalAssets = totalCurrentAssets + totalFixedAssets + totalOtherAssets;
+
+  $: totalCurrentLiabilities = Object.values(balanceData.liabilities.current).reduce((sum, val) => sum + val, 0);
+  $: totalLongTermLiabilities = Object.values(balanceData.liabilities.longTerm).reduce((sum, val) => sum + val, 0);
+  $: totalLiabilities = totalCurrentLiabilities + totalLongTermLiabilities;
+
+  $: totalEquity = Object.values(balanceData.equity).reduce((sum, val) => sum + val, 0);
+  $: totalLiabilitiesAndEquity = totalLiabilities + totalEquity;
+
+  // Financial ratios
+  $: currentRatio = totalCurrentAssets / totalCurrentLiabilities;
+  $: debtToEquityRatio = totalLiabilities / totalEquity;
+  $: workingCapital = totalCurrentAssets - totalCurrentLiabilities;
+
+  function updateDateRange(range: string) {
     dateRange = range;
     if (range !== 'custom') {
       showDatePicker = false;
@@ -303,14 +366,225 @@
           </div>
         </div>
       </div>
+    {:else if selectedReport === 'balance'}
+      <div class="balance-report">
+        <div class="report-header">
+          <h2>Balance Sheet</h2>
+          <div class="report-meta">
+            <span>As of: {dateRange.toUpperCase()}</span>
+            <span>Generated: {new Date().toLocaleDateString()}</span>
+          </div>
+        </div>
+
+        <div class="balance-sections">
+          <!-- Assets -->
+          <div class="balance-section assets">
+            <h3>Assets</h3>
+            
+            <div class="balance-subsection">
+              <h4>Current Assets</h4>
+              <div class="balance-items">
+                <div class="balance-item">
+                  <span>Cash & Cash Equivalents</span>
+                  <span class="amount">${balanceData.assets.current.cash.toLocaleString()}</span>
+                </div>
+                <div class="balance-item">
+                  <span>Accounts Receivable</span>
+                  <span class="amount">${balanceData.assets.current.accountsReceivable.toLocaleString()}</span>
+                </div>
+                <div class="balance-item">
+                  <span>Inventory</span>
+                  <span class="amount">${balanceData.assets.current.inventory.toLocaleString()}</span>
+                </div>
+                <div class="balance-item">
+                  <span>Prepaid Expenses</span>
+                  <span class="amount">${balanceData.assets.current.prepaidExpenses.toLocaleString()}</span>
+                </div>
+                <div class="balance-item">
+                  <span>Short-term Investments</span>
+                  <span class="amount">${balanceData.assets.current.shortTermInvestments.toLocaleString()}</span>
+                </div>
+                <div class="balance-item total">
+                  <span>Total Current Assets</span>
+                  <span class="amount">${totalCurrentAssets.toLocaleString()}</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="balance-subsection">
+              <h4>Fixed Assets</h4>
+              <div class="balance-items">
+                <div class="balance-item">
+                  <span>Equipment</span>
+                  <span class="amount">${balanceData.assets.fixed.equipment.toLocaleString()}</span>
+                </div>
+                <div class="balance-item">
+                  <span>Buildings</span>
+                  <span class="amount">${balanceData.assets.fixed.buildings.toLocaleString()}</span>
+                </div>
+                <div class="balance-item">
+                  <span>Vehicles</span>
+                  <span class="amount">${balanceData.assets.fixed.vehicles.toLocaleString()}</span>
+                </div>
+                <div class="balance-item">
+                  <span>Land</span>
+                  <span class="amount">${balanceData.assets.fixed.land.toLocaleString()}</span>
+                </div>
+                <div class="balance-item">
+                  <span>Accumulated Depreciation</span>
+                  <span class="amount negative">${balanceData.assets.fixed.accumulatedDepreciation.toLocaleString()}</span>
+                </div>
+                <div class="balance-item total">
+                  <span>Total Fixed Assets</span>
+                  <span class="amount">${totalFixedAssets.toLocaleString()}</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="balance-subsection">
+              <h4>Other Assets</h4>
+              <div class="balance-items">
+                <div class="balance-item">
+                  <span>Patents</span>
+                  <span class="amount">${balanceData.assets.other.patents.toLocaleString()}</span>
+                </div>
+                <div class="balance-item">
+                  <span>Goodwill</span>
+                  <span class="amount">${balanceData.assets.other.goodwill.toLocaleString()}</span>
+                </div>
+                <div class="balance-item">
+                  <span>Long-term Investments</span>
+                  <span class="amount">${balanceData.assets.other.longTermInvestments.toLocaleString()}</span>
+                </div>
+                <div class="balance-item total">
+                  <span>Total Other Assets</span>
+                  <span class="amount">${totalOtherAssets.toLocaleString()}</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="balance-item total-assets">
+              <span>Total Assets</span>
+              <span class="amount">${totalAssets.toLocaleString()}</span>
+            </div>
+          </div>
+
+          <!-- Liabilities & Equity -->
+          <div class="balance-section liabilities-equity">
+            <h3>Liabilities & Equity</h3>
+            
+            <div class="balance-subsection">
+              <h4>Current Liabilities</h4>
+              <div class="balance-items">
+                <div class="balance-item">
+                  <span>Accounts Payable</span>
+                  <span class="amount">${balanceData.liabilities.current.accountsPayable.toLocaleString()}</span>
+                </div>
+                <div class="balance-item">
+                  <span>Short-term Loans</span>
+                  <span class="amount">${balanceData.liabilities.current.shortTermLoans.toLocaleString()}</span>
+                </div>
+                <div class="balance-item">
+                  <span>Accrued Expenses</span>
+                  <span class="amount">${balanceData.liabilities.current.accruedExpenses.toLocaleString()}</span>
+                </div>
+                <div class="balance-item">
+                  <span>Income Taxes Payable</span>
+                  <span class="amount">${balanceData.liabilities.current.incomeTaxesPayable.toLocaleString()}</span>
+                </div>
+                <div class="balance-item">
+                  <span>Current Portion of Long-term Debt</span>
+                  <span class="amount">${balanceData.liabilities.current.currentPortionLongTermDebt.toLocaleString()}</span>
+                </div>
+                <div class="balance-item total">
+                  <span>Total Current Liabilities</span>
+                  <span class="amount">${totalCurrentLiabilities.toLocaleString()}</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="balance-subsection">
+              <h4>Long-term Liabilities</h4>
+              <div class="balance-items">
+                <div class="balance-item">
+                  <span>Long-term Loans</span>
+                  <span class="amount">${balanceData.liabilities.longTerm.longTermLoans.toLocaleString()}</span>
+                </div>
+                <div class="balance-item">
+                  <span>Bonds Payable</span>
+                  <span class="amount">${balanceData.liabilities.longTerm.bondsPayable.toLocaleString()}</span>
+                </div>
+                <div class="balance-item">
+                  <span>Deferred Taxes</span>
+                  <span class="amount">${balanceData.liabilities.longTerm.deferredTaxes.toLocaleString()}</span>
+                </div>
+                <div class="balance-item total">
+                  <span>Total Long-term Liabilities</span>
+                  <span class="amount">${totalLongTermLiabilities.toLocaleString()}</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="balance-item total-liabilities">
+              <span>Total Liabilities</span>
+              <span class="amount">${totalLiabilities.toLocaleString()}</span>
+            </div>
+
+            <div class="balance-subsection">
+              <h4>Equity</h4>
+              <div class="balance-items">
+                <div class="balance-item">
+                  <span>Common Stock</span>
+                  <span class="amount">${balanceData.equity.commonStock.toLocaleString()}</span>
+                </div>
+                <div class="balance-item">
+                  <span>Retained Earnings</span>
+                  <span class="amount">${balanceData.equity.retainedEarnings.toLocaleString()}</span>
+                </div>
+                <div class="balance-item">
+                  <span>Additional Paid-in Capital</span>
+                  <span class="amount">${balanceData.equity.additionalPaidInCapital.toLocaleString()}</span>
+                </div>
+                <div class="balance-item">
+                  <span>Treasury Stock</span>
+                  <span class="amount negative">${balanceData.equity.treasuryStock.toLocaleString()}</span>
+                </div>
+                <div class="balance-item total">
+                  <span>Total Equity</span>
+                  <span class="amount">${totalEquity.toLocaleString()}</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="balance-item total-liabilities-equity">
+              <span>Total Liabilities & Equity</span>
+              <span class="amount">${totalLiabilitiesAndEquity.toLocaleString()}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="balance-summary">
+          <div class="summary-item">
+            <span>Current Ratio</span>
+            <span class="ratio">{currentRatio.toFixed(2)}</span>
+          </div>
+          <div class="summary-item">
+            <span>Debt to Equity Ratio</span>
+            <span class="ratio">{debtToEquityRatio.toFixed(2)}</span>
+          </div>
+          <div class="summary-item">
+            <span>Working Capital</span>
+            <span class="amount">${workingCapital.toLocaleString()}</span>
+          </div>
+        </div>
+      </div>
     {:else}
       <div class="other-reports">
         <div class="placeholder">
-          <h3>{selectedReport === 'balance' ? 'Balance Sheet' : 
-               selectedReport === 'cashflow' ? 'Cash Flow Statement' :
+          <h3>{selectedReport === 'cashflow' ? 'Cash Flow Statement' :
                selectedReport === 'customers' ? 'Customer Analysis' :
                'Vendor Analysis'} Report</h3>
-          <p>This report type is coming soon. Currently showing Profit & Loss data.</p>
+          <p>This report type is coming soon. Currently showing Profit & Loss and Balance Sheet data.</p>
         </div>
       </div>
     {/if}
@@ -461,7 +735,8 @@
     background: #545b62;
   }
 
-  .pl-report {
+  .pl-report,
+  .balance-report {
     background: white;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
@@ -537,6 +812,10 @@
     color: #28a745;
   }
 
+  .amount.negative {
+    color: #dc3545;
+  }
+
   .gross-profit,
   .operating-income,
   .net-income {
@@ -572,10 +851,80 @@
     color: #333;
   }
 
-  .percentage {
+  .percentage,
+  .ratio {
     font-weight: 600;
     color: #28a745;
     font-size: 1.1rem;
+  }
+
+  /* Balance Sheet Styles */
+  .balance-sections {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    padding: 1.5rem;
+  }
+
+  .balance-section h3 {
+    margin: 0 0 1.5rem 0;
+    color: #333;
+    font-size: 1.3rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #e9ecef;
+  }
+
+  .balance-subsection {
+    margin-bottom: 2rem;
+  }
+
+  .balance-subsection h4 {
+    margin: 0 0 1rem 0;
+    color: #555;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  .balance-items {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .balance-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+  }
+
+  .balance-item:hover {
+    background: #f8f9fa;
+  }
+
+  .balance-item.total {
+    font-weight: 600;
+    background: #f8f9fa;
+    border-top: 1px solid #e9ecef;
+  }
+
+  .balance-item.total-assets,
+  .balance-item.total-liabilities,
+  .balance-item.total-liabilities-equity {
+    font-weight: 700;
+    background: #e9ecef;
+    border-top: 2px solid #333;
+    font-size: 1.1rem;
+  }
+
+  .balance-summary {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-top: 1px solid #e9ecef;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
   }
 
   .other-reports {
@@ -618,8 +967,14 @@
       gap: 0.5rem;
     }
 
-    .pl-summary {
+    .pl-summary,
+    .balance-summary {
       grid-template-columns: 1fr;
+    }
+
+    .balance-sections {
+      grid-template-columns: 1fr;
+      gap: 1rem;
     }
   }
 
