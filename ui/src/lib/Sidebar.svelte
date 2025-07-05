@@ -1,23 +1,17 @@
 <script>
-// Sidebar logic can go here if needed
+  import { auth } from './auth';
+  import { getAccessiblePages } from './roles';
+  
+  // Get accessible pages for current user
+  $: accessiblePages = $auth.user ? getAccessiblePages($auth.user.role) : [];
 </script>
 
 <aside class="sidebar">
   <nav>
     <ul>
-      <li><a href="/">Home</a></li>
-      <li><a href="/governance">Governance/Compliance</a></li>
-      <li><a href="/customers">Customers</a></li>
-      <li><a href="/invoices">Invoices</a></li>
-      <li><a href="/quotes">Quotes</a></li>
-      <li><a href="/vehicles">Vehicles & Mileage</a></li>
-      <li><a href="/chart-of-accounts">Chart of Accounts</a></li>
-      <li><a href="/expenses">Expenses & Purchasing</a></li>
-      <li><a href="/vendors">Vendors and Suppliers</a></li>
-      <li><a href="/payroll">Payroll</a></li>
-      <li><a href="/taxes">Taxes</a></li>
-      <li><a href="/reports">Reports</a></li>
-      <li><a href="/settings">Settings</a></li>
+      {#each accessiblePages as page}
+        <li><a href={page.path}>{page.label}</a></li>
+      {/each}
     </ul>
   </nav>
 </aside>

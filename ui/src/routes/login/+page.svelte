@@ -80,8 +80,10 @@
     
     <div class="demo-credentials">
       <p><strong>Demo Credentials:</strong></p>
-      <p>Admin: admin@pentaledger.com / admin123</p>
-      <p>User: user@pentaledger.com / user123</p>
+      <p><strong>Admin:</strong> admin@pentaledger.com / admin123</p>
+      <p><strong>Manager:</strong> manager@pentaledger.com / manager123</p>
+      <p><strong>Accountant:</strong> accountant@pentaledger.com / accountant123</p>
+      <p><strong>User:</strong> user@pentaledger.com / user123</p>
     </div>
   </div>
 </div>

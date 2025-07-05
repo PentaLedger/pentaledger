@@ -18,7 +18,10 @@
     </ul>
     {#if $auth.isAuthenticated}
       <div class="user-section">
-        <span class="user-name">Welcome, {$auth.user?.name}</span>
+        <div class="user-info">
+          <span class="user-name">Welcome, {$auth.user?.name}</span>
+          <span class="user-role">{$auth.user?.role}</span>
+        </div>
         <button class="logout-button" on:click={handleLogout}>Logout</button>
       </div>
     {/if}
@@ -71,9 +74,20 @@
   align-items: center;
   gap: 1rem;
 }
+.user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
 .user-name {
   font-size: 0.9rem;
   color: #ccc;
+}
+.user-role {
+  font-size: 0.75rem;
+  color: #999;
+  text-transform: uppercase;
+  font-weight: 500;
 }
 .logout-button {
   background: #dc3545;
