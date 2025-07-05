@@ -84,6 +84,45 @@
     }
   };
 
+  // Sample Cash Flow data
+  const cashFlowData = {
+    operating: {
+      netIncome: 175000,
+      adjustments: {
+        depreciation: 25000,
+        amortization: 5000,
+        stockBasedCompensation: 15000,
+        deferredTaxes: 8000,
+        lossOnSaleOfAssets: 3000,
+        gainOnInvestments: -12000
+      },
+      workingCapital: {
+        accountsReceivable: -25000,
+        inventory: -45000,
+        prepaidExpenses: 5000,
+        accountsPayable: 18000,
+        accruedExpenses: 8000,
+        incomeTaxesPayable: -12000
+      }
+    },
+    investing: {
+      capitalExpenditures: -180000,
+      acquisitions: -75000,
+      saleOfEquipment: 45000,
+      purchaseOfInvestments: -100000,
+      saleOfInvestments: 35000,
+      loansToOthers: -25000
+    },
+    financing: {
+      issuanceOfStock: 50000,
+      repurchaseOfStock: -30000,
+      dividendsPaid: -45000,
+      proceedsFromLoans: 200000,
+      repaymentOfLoans: -120000,
+      paymentOfDebt: -75000
+    }
+  };
+
   // Calculate P&L totals
   $: totalRevenue = Object.values(plData.revenue).reduce((sum, val) => sum + val, 0);
   $: totalCOGS = Object.values(plData.costOfGoods).reduce((sum, val) => sum + val, 0);
@@ -111,6 +150,15 @@
   $: currentRatio = totalCurrentAssets / totalCurrentLiabilities;
   $: debtToEquityRatio = totalLiabilities / totalEquity;
   $: workingCapital = totalCurrentAssets - totalCurrentLiabilities;
+
+  // Calculate Cash Flow totals
+  $: totalAdjustments = Object.values(cashFlowData.operating.adjustments).reduce((sum, val) => sum + val, 0);
+  $: totalWorkingCapital = Object.values(cashFlowData.operating.workingCapital).reduce((sum, val) => sum + val, 0);
+  $: netOperatingCashFlow = cashFlowData.operating.netIncome + totalAdjustments + totalWorkingCapital;
+  
+  $: netInvestingCashFlow = Object.values(cashFlowData.investing).reduce((sum, val) => sum + val, 0);
+  $: netFinancingCashFlow = Object.values(cashFlowData.financing).reduce((sum, val) => sum + val, 0);
+  $: netChangeInCash = netOperatingCashFlow + netInvestingCashFlow + netFinancingCashFlow;
 
   function updateDateRange(range: string) {
     dateRange = range;
@@ -578,6 +626,206 @@
           </div>
         </div>
       </div>
+    {:else if selectedReport === 'cashflow'}
+      <div class="cashflow-report">
+        <div class="report-header">
+          <h2>Cash Flow Statement</h2>
+          <div class="report-meta">
+            <span>Period: {dateRange.toUpperCase()}</span>
+            <span>Generated: {new Date().toLocaleDateString()}</span>
+          </div>
+        </div>
+
+        <div class="cashflow-sections">
+          <!-- Operating Activities -->
+          <div class="cashflow-section operating">
+            <h3>Operating Activities</h3>
+            <div class="cashflow-items">
+              <div class="cashflow-item">
+                <span>Net Income</span>
+                <span class="amount positive">${cashFlowData.operating.netIncome.toLocaleString()}</span>
+              </div>
+              <div class="cashflow-item">
+                <span>Adjustments for Non-Cash Items</span>
+                <div class="cashflow-adjustments">
+                  <div class="cashflow-adjustment">
+                    <span>Depreciation</span>
+                    <span class="amount">${cashFlowData.operating.adjustments.depreciation.toLocaleString()}</span>
+                  </div>
+                  <div class="cashflow-adjustment">
+                    <span>Amortization</span>
+                    <span class="amount">${cashFlowData.operating.adjustments.amortization.toLocaleString()}</span>
+                  </div>
+                  <div class="cashflow-adjustment">
+                    <span>Stock-Based Compensation</span>
+                    <span class="amount">${cashFlowData.operating.adjustments.stockBasedCompensation.toLocaleString()}</span>
+                  </div>
+                  <div class="cashflow-adjustment">
+                    <span>Deferred Taxes</span>
+                    <span class="amount">${cashFlowData.operating.adjustments.deferredTaxes.toLocaleString()}</span>
+                  </div>
+                  <div class="cashflow-adjustment">
+                    <span>Loss on Sale of Assets</span>
+                    <span class="amount negative">${cashFlowData.operating.adjustments.lossOnSaleOfAssets.toLocaleString()}</span>
+                  </div>
+                  <div class="cashflow-adjustment">
+                    <span>Gain on Investments</span>
+                    <span class="amount negative">${cashFlowData.operating.adjustments.gainOnInvestments.toLocaleString()}</span>
+                  </div>
+                </div>
+              </div>
+              <div class="cashflow-item">
+                <span>Changes in Working Capital</span>
+                <div class="cashflow-working-capital">
+                  <div class="cashflow-wc-item">
+                    <span>Accounts Receivable</span>
+                    <span class="amount">${cashFlowData.operating.workingCapital.accountsReceivable.toLocaleString()}</span>
+                  </div>
+                  <div class="cashflow-wc-item">
+                    <span>Inventory</span>
+                    <span class="amount">${cashFlowData.operating.workingCapital.inventory.toLocaleString()}</span>
+                  </div>
+                  <div class="cashflow-wc-item">
+                    <span>Prepaid Expenses</span>
+                    <span class="amount">${cashFlowData.operating.workingCapital.prepaidExpenses.toLocaleString()}</span>
+                  </div>
+                  <div class="cashflow-wc-item">
+                    <span>Accounts Payable</span>
+                    <span class="amount">${cashFlowData.operating.workingCapital.accountsPayable.toLocaleString()}</span>
+                  </div>
+                  <div class="cashflow-wc-item">
+                    <span>Accrued Expenses</span>
+                    <span class="amount">${cashFlowData.operating.workingCapital.accruedExpenses.toLocaleString()}</span>
+                  </div>
+                  <div class="cashflow-wc-item">
+                    <span>Income Taxes Payable</span>
+                    <span class="amount">${cashFlowData.operating.workingCapital.incomeTaxesPayable.toLocaleString()}</span>
+                  </div>
+                </div>
+              </div>
+                             <div class="cashflow-item total">
+                 <span>Net Cash Flow from Operating Activities</span>
+                 <span class="amount positive">${netOperatingCashFlow.toLocaleString()}</span>
+               </div>
+            </div>
+          </div>
+
+          <!-- Investing Activities -->
+          <div class="cashflow-section investing">
+            <h3>Investing Activities</h3>
+            <div class="cashflow-items">
+              <div class="cashflow-item">
+                <span>Capital Expenditures</span>
+                <span class="amount negative">${cashFlowData.investing.capitalExpenditures.toLocaleString()}</span>
+              </div>
+              <div class="cashflow-item">
+                <span>Acquisitions</span>
+                <span class="amount negative">${cashFlowData.investing.acquisitions.toLocaleString()}</span>
+              </div>
+              <div class="cashflow-item">
+                <span>Sale of Equipment</span>
+                <span class="amount positive">${cashFlowData.investing.saleOfEquipment.toLocaleString()}</span>
+              </div>
+              <div class="cashflow-item">
+                <span>Purchase of Investments</span>
+                <span class="amount negative">${cashFlowData.investing.purchaseOfInvestments.toLocaleString()}</span>
+              </div>
+              <div class="cashflow-item">
+                <span>Sale of Investments</span>
+                <span class="amount positive">${cashFlowData.investing.saleOfInvestments.toLocaleString()}</span>
+              </div>
+              <div class="cashflow-item">
+                <span>Loans to Others</span>
+                <span class="amount negative">${cashFlowData.investing.loansToOthers.toLocaleString()}</span>
+              </div>
+                             <div class="cashflow-item total">
+                 <span>Net Cash Flow from Investing Activities</span>
+                 <span class="amount negative">${netInvestingCashFlow.toLocaleString()}</span>
+               </div>
+            </div>
+          </div>
+
+          <!-- Financing Activities -->
+          <div class="cashflow-section financing">
+            <h3>Financing Activities</h3>
+            <div class="cashflow-items">
+              <div class="cashflow-item">
+                <span>Issuance of Stock</span>
+                <span class="amount positive">${cashFlowData.financing.issuanceOfStock.toLocaleString()}</span>
+              </div>
+              <div class="cashflow-item">
+                <span>Repurchase of Stock</span>
+                <span class="amount negative">${cashFlowData.financing.repurchaseOfStock.toLocaleString()}</span>
+              </div>
+              <div class="cashflow-item">
+                <span>Dividends Paid</span>
+                <span class="amount negative">${cashFlowData.financing.dividendsPaid.toLocaleString()}</span>
+              </div>
+              <div class="cashflow-item">
+                <span>Proceeds from Loans</span>
+                <span class="amount positive">${cashFlowData.financing.proceedsFromLoans.toLocaleString()}</span>
+              </div>
+              <div class="cashflow-item">
+                <span>Repayment of Loans</span>
+                <span class="amount negative">${cashFlowData.financing.repaymentOfLoans.toLocaleString()}</span>
+              </div>
+              <div class="cashflow-item">
+                <span>Payment of Debt</span>
+                <span class="amount negative">${cashFlowData.financing.paymentOfDebt.toLocaleString()}</span>
+              </div>
+                             <div class="cashflow-item total">
+                 <span>Net Cash Flow from Financing Activities</span>
+                 <span class="amount negative">${netFinancingCashFlow.toLocaleString()}</span>
+               </div>
+            </div>
+          </div>
+
+          <!-- Net Change in Cash -->
+          <div class="cashflow-section net-cash">
+            <h3>Net Change in Cash</h3>
+            <div class="cashflow-items">
+                             <div class="cashflow-item">
+                 <span>Net Cash Flow from Operating Activities</span>
+                 <span class="amount positive">${netOperatingCashFlow.toLocaleString()}</span>
+               </div>
+               <div class="cashflow-item">
+                 <span>Net Cash Flow from Investing Activities</span>
+                 <span class="amount negative">${netInvestingCashFlow.toLocaleString()}</span>
+               </div>
+               <div class="cashflow-item">
+                 <span>Net Cash Flow from Financing Activities</span>
+                 <span class="amount negative">${netFinancingCashFlow.toLocaleString()}</span>
+               </div>
+               <div class="cashflow-item total">
+                 <span>Net Change in Cash</span>
+                 <span class="amount">${netChangeInCash.toLocaleString()}</span>
+               </div>
+            </div>
+          </div>
+
+          <!-- Cash at Beginning of Period -->
+          <div class="cashflow-section cash-at-beginning">
+            <h3>Cash at Beginning of Period</h3>
+            <div class="cashflow-items">
+                             <div class="cashflow-item">
+                 <span>Cash at Beginning of Period</span>
+                 <span class="amount">$0</span>
+               </div>
+            </div>
+          </div>
+
+          <!-- Cash at End of Period -->
+          <div class="cashflow-section cash-at-end">
+            <h3>Cash at End of Period</h3>
+            <div class="cashflow-items">
+                             <div class="cashflow-item">
+                 <span>Cash at End of Period</span>
+                 <span class="amount">${netChangeInCash.toLocaleString()}</span>
+               </div>
+            </div>
+          </div>
+        </div>
+      </div>
     {:else}
       <div class="other-reports">
         <div class="placeholder">
@@ -736,7 +984,8 @@
   }
 
   .pl-report,
-  .balance-report {
+  .balance-report,
+  .cashflow-report {
     background: white;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
@@ -927,6 +1176,120 @@
     gap: 1rem;
   }
 
+  .cashflow-sections {
+    padding: 1.5rem;
+  }
+
+  .cashflow-section {
+    margin-bottom: 2rem;
+  }
+
+  .cashflow-section:last-child {
+    margin-bottom: 0;
+  }
+
+  .cashflow-section h3 {
+    margin: 0 0 1rem 0;
+    color: #333;
+    font-size: 1.1rem;
+  }
+
+  .cashflow-items {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .cashflow-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+  }
+
+  .cashflow-item:hover {
+    background: #f8f9fa;
+  }
+
+  .cashflow-item.total {
+    font-weight: 600;
+    background: #f8f9fa;
+    border-top: 2px solid #e9ecef;
+  }
+
+  .cashflow-adjustments {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding-left: 1rem;
+  }
+
+  .cashflow-adjustment {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    color: #555;
+  }
+
+  .cashflow-working-capital {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding-left: 1rem;
+  }
+
+  .cashflow-wc-item {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    color: #555;
+  }
+
+  .cashflow-section.net-cash {
+    border-top: 3px solid #333;
+    padding-top: 1rem;
+  }
+
+  .cashflow-section.net-cash .cashflow-item.total {
+    border-top: none;
+  }
+
+  .cashflow-section.cash-at-beginning,
+  .cashflow-section.cash-at-end {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-top: 1px solid #e9ecef;
+  }
+
+  .cashflow-section.cash-at-beginning .cashflow-items,
+  .cashflow-section.cash-at-end .cashflow-items {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .cashflow-section.cash-at-beginning .cashflow-item,
+  .cashflow-section.cash-at-end .cashflow-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+  }
+
+  .cashflow-section.cash-at-beginning .cashflow-item:hover,
+  .cashflow-section.cash-at-end .cashflow-item:hover {
+    background: #f8f9fa;
+  }
+
+  .cashflow-section.cash-at-beginning .cashflow-item.total,
+  .cashflow-section.cash-at-end .cashflow-item.total {
+    font-weight: 600;
+    background: #f8f9fa;
+    border-top: 2px solid #e9ecef;
+  }
+
   .other-reports {
     background: white;
     border-radius: 8px;
@@ -968,7 +1331,8 @@
     }
 
     .pl-summary,
-    .balance-summary {
+    .balance-summary,
+    .cashflow-sections {
       grid-template-columns: 1fr;
     }
 
