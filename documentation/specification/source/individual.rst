@@ -94,3 +94,92 @@ Future enhancements for individual filers may include:
 - Household cash flow planning
 
 PentaLedger is designed to simplify tax and financial planning for individuals and families, giving them the tools to make smart decisions year-round.
+
+Debt Management
+###############
+
+PentaLedger provides tools to help users track debts and liabilities, assess their financial health, and develop a strategy for paying off debt using proven methods.
+
+Overview
+========
+
+This module is designed for both individual taxpayers and small businesses to:
+
+- Track outstanding debts (credit cards, loans, mortgages, etc.)
+- Categorize liabilities by type and due date
+- Calculate key debt ratios for financial planning
+- Generate personalized debt payoff plans using either the **snowball** or **avalanche** method
+
+Supported Debt Types
+====================
+
+Users can enter and track a variety of liabilities, including:
+
+- Credit cards
+- Personal loans
+- Auto loans
+- Mortgages
+- Business loans
+- Lines of credit
+
+For each debt, users can record:
+
+- **Creditor name**
+- **Outstanding balance**
+- **Interest rate**
+- **Minimum monthly payment**
+- **Due date**
+- **Payment frequency**
+
+Debt Ratios and Metrics
+=======================
+
+PentaLedger automatically calculates several financial indicators:
+
+- **Debt-to-Income Ratio (DTI)**: Measures monthly debt payments as a percentage of income
+- **Debt-to-Asset Ratio**: Compares total liabilities to total assets
+- **Total Interest Paid** (current and projected)
+- **Estimated Payoff Date** (based on current payments)
+
+Debt Payoff Plans
+=================
+
+Users can choose from two proven strategies:
+
+Debt Snowball Method
+---------------------
+
+- Focus on paying off the **smallest balance first**, while making minimum payments on other debts
+- Builds momentum and motivation through quick wins
+- Typically results in faster psychological progress
+
+Debt Avalanche Method
+----------------------
+
+- Focus on paying off the **highest interest rate** debt first
+- Minimizes total interest paid over time
+- Often results in faster total debt repayment
+
+The system can simulate both strategies and let users compare:
+
+- Total interest paid
+- Time to debt freedom
+- Cash flow impact over time
+
+Visualization
+=============
+
+Debt payoff plans include charts and reports showing:
+
+- Remaining balances over time
+- Projected payoff timelines
+- Monthly payment schedules
+- Total interest savings by method
+
+Planned Enhancements
+====================
+
+- Debt consolidation impact analysis
+- Automatic syncing with loan or credit card providers
+- Monthly email reminders or debt progress notifications
+- Budget planning features integrated with debt schedules
