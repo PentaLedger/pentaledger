@@ -11,6 +11,7 @@ export interface Permission {
 export const ROLE_PERMISSIONS: Record<UserRole, Permission[]> = {
   admin: [
     { resource: 'dashboard', actions: ['read'] },
+    { resource: 'profile', actions: ['read', 'write'] },
     { resource: 'governance', actions: ['read', 'write', 'delete'] },
     { resource: 'customers', actions: ['read', 'write', 'delete'] },
     { resource: 'invoices', actions: ['read', 'write', 'delete'] },
@@ -27,6 +28,7 @@ export const ROLE_PERMISSIONS: Record<UserRole, Permission[]> = {
   ],
   manager: [
     { resource: 'dashboard', actions: ['read'] },
+    { resource: 'profile', actions: ['read', 'write'] },
     { resource: 'governance', actions: ['read', 'write'] },
     { resource: 'customers', actions: ['read', 'write'] },
     { resource: 'invoices', actions: ['read', 'write'] },
@@ -42,6 +44,7 @@ export const ROLE_PERMISSIONS: Record<UserRole, Permission[]> = {
   ],
   accountant: [
     { resource: 'dashboard', actions: ['read'] },
+    { resource: 'profile', actions: ['read', 'write'] },
     { resource: 'governance', actions: ['read'] },
     { resource: 'customers', actions: ['read'] },
     { resource: 'invoices', actions: ['read', 'write'] },
@@ -57,6 +60,7 @@ export const ROLE_PERMISSIONS: Record<UserRole, Permission[]> = {
   ],
   user: [
     { resource: 'dashboard', actions: ['read'] },
+    { resource: 'profile', actions: ['read', 'write'] },
     { resource: 'governance', actions: ['read'] },
     { resource: 'customers', actions: ['read'] },
     { resource: 'invoices', actions: ['read'] },
