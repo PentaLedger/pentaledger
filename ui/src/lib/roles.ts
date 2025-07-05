@@ -12,6 +12,7 @@ export const ROLE_PERMISSIONS: Record<UserRole, Permission[]> = {
   admin: [
     { resource: 'dashboard', actions: ['read'] },
     { resource: 'profile', actions: ['read', 'write'] },
+    { resource: 'companies', actions: ['read', 'write', 'delete'] },
     { resource: 'governance', actions: ['read', 'write', 'delete'] },
     { resource: 'customers', actions: ['read', 'write', 'delete'] },
     { resource: 'invoices', actions: ['read', 'write', 'delete'] },
@@ -29,6 +30,7 @@ export const ROLE_PERMISSIONS: Record<UserRole, Permission[]> = {
   manager: [
     { resource: 'dashboard', actions: ['read'] },
     { resource: 'profile', actions: ['read', 'write'] },
+    { resource: 'companies', actions: ['read', 'write'] },
     { resource: 'governance', actions: ['read', 'write'] },
     { resource: 'customers', actions: ['read', 'write'] },
     { resource: 'invoices', actions: ['read', 'write'] },
@@ -45,6 +47,7 @@ export const ROLE_PERMISSIONS: Record<UserRole, Permission[]> = {
   accountant: [
     { resource: 'dashboard', actions: ['read'] },
     { resource: 'profile', actions: ['read', 'write'] },
+    { resource: 'companies', actions: ['read'] },
     { resource: 'governance', actions: ['read'] },
     { resource: 'customers', actions: ['read'] },
     { resource: 'invoices', actions: ['read', 'write'] },
@@ -61,6 +64,7 @@ export const ROLE_PERMISSIONS: Record<UserRole, Permission[]> = {
   user: [
     { resource: 'dashboard', actions: ['read'] },
     { resource: 'profile', actions: ['read', 'write'] },
+    { resource: 'companies', actions: ['read'] },
     { resource: 'governance', actions: ['read'] },
     { resource: 'customers', actions: ['read'] },
     { resource: 'invoices', actions: ['read'] },
@@ -79,6 +83,7 @@ export const ROLE_PERMISSIONS: Record<UserRole, Permission[]> = {
 // Navigation items with role requirements
 export const NAVIGATION_ITEMS = [
   { path: '/', label: 'Home', roles: ['admin', 'manager', 'accountant', 'user'] },
+  { path: '/companies', label: 'Companies', roles: ['admin', 'manager', 'accountant', 'user'] },
   { path: '/governance', label: 'Governance/Compliance', roles: ['admin', 'manager', 'accountant', 'user'] },
   { path: '/customers', label: 'Customers', roles: ['admin', 'manager', 'accountant', 'user'] },
   { path: '/invoices', label: 'Invoices', roles: ['admin', 'manager', 'accountant', 'user'] },
