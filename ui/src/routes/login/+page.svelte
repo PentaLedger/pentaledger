@@ -1,19 +1,25 @@
 <script>
+  import { login } from '$lib/auth';
+  import { goto } from '$app/navigation';
+  
   let email = '';
   let password = '';
+  let errorMessage = '';
   let isLoading = false;
 
-  function handleLogin() {
+  async function handleLogin() {
     isLoading = true;
-    // TODO: Implement actual login logic
-    console.log('Login attempt:', { email, password });
+    errorMessage = '';
     
-    // Simulate login process
-    setTimeout(() => {
-      isLoading = false;
+    const result = await login(email, password);
+    
+    if (result.success) {
       // Redirect to dashboard after successful login
-      window.location.href = '/';
-    }, 1000);
+      goto('/');
+    } else {
+      errorMessage = result.error || 'Login failed. Please try again.';
+      isLoading = false;
+    }
   }
 </script>
 
@@ -24,6 +30,12 @@
       <p>Sign in to your account</p>
     </div>
     
+    {#if errorMessage}
+      <div class="error-message">
+        {errorMessage}
+      </div>
+    {/if}
+    
     <form class="login-form" on:submit|preventDefault={handleLogin}>
       <div class="form-group">
         <label for="email">Email</label>
@@ -33,6 +45,7 @@
           bind:value={email} 
           placeholder="Enter your email"
           required
+          disabled={isLoading}
         />
       </div>
       
@@ -44,12 +57,13 @@
           bind:value={password} 
           placeholder="Enter your password"
           required
+          disabled={isLoading}
         />
       </div>
       
       <div class="form-options">
         <label class="checkbox-label">
-          <input type="checkbox" />
+          <input type="checkbox" disabled={isLoading} />
           <span>Remember me</span>
         </label>
         <a href="/forgot-password" class="forgot-link">Forgot password?</a>
@@ -62,6 +76,12 @@
     
     <div class="login-footer">
       <p>Don't have an account? <a href="/register">Sign up</a></p>
+    </div>
+    
+    <div class="demo-credentials">
+      <p><strong>Demo Credentials:</strong></p>
+      <p>Admin: admin@pentaledger.com / admin123</p>
+      <p>User: user@pentaledger.com / user123</p>
     </div>
   </div>
 </div>
@@ -101,6 +121,16 @@
     font-size: 0.95rem;
   }
   
+  .error-message {
+    background: #fee;
+    color: #c33;
+    padding: 0.75rem;
+    border-radius: 6px;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+    border: 1px solid #fcc;
+  }
+  
   .login-form {
     display: flex;
     flex-direction: column;
@@ -131,6 +161,11 @@
     outline: none;
     border-color: #667eea;
     box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  }
+  
+  .form-group input:disabled {
+    background: #f5f5f5;
+    cursor: not-allowed;
   }
   
   .form-options {
@@ -198,5 +233,22 @@
   
   .login-footer a:hover {
     text-decoration: underline;
+  }
+  
+  .demo-credentials {
+    margin-top: 2rem;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    color: #666;
+  }
+  
+  .demo-credentials p {
+    margin: 0.25rem 0;
+  }
+  
+  .demo-credentials strong {
+    color: #333;
   }
 </style> 
